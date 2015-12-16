@@ -10,6 +10,41 @@ email : ranihaileydesai@gmail.com
 <html>
 <head>
 	<title> Sign Up </title>
+	
+	<style>
+		#submit:disabled {
+			cursor: not-allowed;
+		}
+
+	</style>
+	<script>
+		function checkPasswords(){
+			console.log("In the function");
+			var newpassword = document.getElementById("newpassword1").value;
+			var currentToValidate = document.getElementById("newpassword2").value;
+			if(newpassword==currentToValidate&&currentToValidate.length == newpassword.length)
+			{
+				document.getElementById("submit").disabled = false;
+				document.getElementById("guide").innerHTML = "";
+				console.log("Equal");
+			}
+			if(!(newpassword==currentToValidate&&currentToValidate.length == newpassword.length))
+			{
+				document.getElementById("submit").disabled = true;
+				document.getElementById("guide").innerHTML = "both passwords should match";
+				console.log("Not Equal");
+			}
+		}
+		function validateHack(){
+			var newpassword = document.getElementById("newpassword1").value;
+			var currentToValidate = document.getElementById("newpassword2").value;
+			if(!(newpassword==currentToValidate&&currentToValidate.length == newpassword.length)){
+				document.getElementById("submit").disabled = true;
+				document.getElementById("guide").innerHTML = "not submitted, make sure passwords are same";
+			}
+			return newpassword==currentToValidate&&currentToValidate.length == newpassword.length;
+		}
+	</script>
 </head>
 <body>
     
@@ -20,7 +55,7 @@ email : ranihaileydesai@gmail.com
     <font color="white">
     <div style="width:600px; height:900px; margin:0 auto; background-color:#0d8b97;">
     <br>
-    <form action="/signup_do/" method="post">
+    <form action="/signup_do/" onsubmit="return validateHack();" method="post">
         <h2>Sign Up Form</h2>
         <br>
         
@@ -50,19 +85,22 @@ email : ranihaileydesai@gmail.com
         
         
         <font color="white"><h4>Set Password : </h4></font>
-        <input type="password" name="password" align="right" required>
+        <input type="password" name="password" id="newpassword1" align="right" required>
         <font color="white"><h4>Confirm Password : </h4></font>
-        <input type="password" name="confirmpassword" required> <br> both passwords should match <br>
+        <input type="password" name="confirmpassword" id="newpassword2" onkeyup="checkPasswords()" required> <br> 
+		<span id="guide"></span> 
+		<br>
         
         <font color="white"><h4>Phone : </h4></font>
         <input type="text" name="phone" align="right" required>
         <font color="white"><h4>Location : </h4></font>
         <input type="text" name="location" required> <br>should be text <br>
+		<!--consider putting it in a span so it can be hidden easily-->
         
         
         
         <br><br>
-        <input class="btn" type="submit" name="submit" value="Submit"><br><br>
+        <input class="btn" type="submit" id="submit" name="submit" value="Submit" disabled><br><br>
         
     </form>
         <br><br>
@@ -77,3 +115,6 @@ email : ranihaileydesai@gmail.com
     
 </body>
 </html>
+<!-- last modified on 16DEC 11:27 AEST time by Ishan Joshi for the Google Code in competition, for further information regarding the algorithm you may contact me on 
+ijosh3@eq.edu.au -> email
+-->
