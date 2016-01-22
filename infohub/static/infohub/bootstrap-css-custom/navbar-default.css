@@ -1,0 +1,13 @@
+.navbar-default {
+    background-color: #e2d7bb;
+    height: 110px;
+}
+
+.navbar-default .navbar-brand {
+    color: #2c0f00;
+}
+
+.navbar-brand-img {
+    width: 85px;
+    height: 80px;
+}

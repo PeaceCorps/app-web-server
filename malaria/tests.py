@@ -1,342 +1,491 @@
-from datetime import datetime
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
-from django.utils.six import BytesIO
-from rest_framework import status
-from rest_framework.parsers import JSONParser
-from rest_framework.renderers import JSONRenderer
-from rest_framework.test import APITestCase
-from malaria.models import Post
+from django.test import TestCase
+from malaria.models import Post, RevPost
+from malaria.services import (create_revpost,
+                              delete_post_by_id,
+                              get_post_by_id,
+                              get_revposts_of_owner)
 from webhub.models import Pcuser
-from webhub.serializers import PostSerializer
 
 
-class PostAPITestCase(APITestCase):
+class MalariaTests(TestCase):
 
     def setUp(self):
-        """Setup the test database, test data and authenticate"""
-
-        u1 = User.objects.create_superuser(username='admin',
-                                           password='password', email='')
-        u1.save()
-
-        o1 = Pcuser(user=u1)
-        o1.save()
-
-        p1 = Post(owner=o1,
-                  title_post="Title 1",
-                  description_post="Description 1")
-
-        p2 = Post(owner=o1,
-                  title_post="Title 2",
-                  description_post="Description 2")
-
-        p3 = Post(owner=o1,
-                  title_post="Title 3",
-                  description_post="Description 3")
-
-        p1.save()
-        p2.save()
-        p3.save()
-
-        self.data_1 = {'owner': 1,
-                       'title_post': 'Test 1',
-                       'description_post': 'Test 1',
-                       'created': datetime.now(),
-                       'updated': datetime.now(),
-                       'id': '1'}
-
-        self.data_2 = {'owner': 1,
-                       'title_post': 'Test 2',
-                       'description_post': 'Test 2',
-                       'created': datetime.now(),
-                       'updated': datetime.now(),
-                       'id': '2'}
-
-        self.data_3 = {'owner': 1,
-                       'title_post': 'Test 3',
-                       'description_post': 'Test 3',
-                       'created': datetime.now(),
-                       'updated': datetime.now(),
-                       'id': '3'}
-
-        self.authenticate()
-
-    def authenticate(self):
-        """Authenticate with the API using a username and password"""
-        self.client.login(username='admin', password='password')
-
-    def unauthenticate(self):
-        """Unauthenticate with the API"""
-        self.client.force_authenticate(user=None)
-
-    def test_detail_delete_cases(self):
-        """Test HTTP DELETE API calls to post-detail endpoint"""
-
-        post_list = Post.objects.all().order_by('id')
-
-        for post in post_list:
-            post_id = str(post.id)
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.delete(url)
-            self.assertEqual(response.status_code,
-                             status.HTTP_405_METHOD_NOT_ALLOWED)
-            self.assertIsNotNone(Post.objects.get(id=post_id))
-
-    def test_detail_head_cases(self):
-        """Test HTTP HEAD API calls to post-detail endpoint"""
-
-        post_list = Post.objects.all().order_by('id')
-
-        for post in post_list:
-            post_id = str(post.id)
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.head(url)
-            self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    def test_detail_negative_cases(self):
-        """Test negative API calls to post-detail endpoint"""
-
-        nonexistant_post_ids = [99, 100, 101, 1000, 1001, 1002, -1, -99, -100]
-
-        for post_id in nonexistant_post_ids:
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.get(url)
-            self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_detail_options_cases(self):
-        """Test HTTP OPTIONS API calls to post-detail endpoint"""
-
-        post_list = Post.objects.all().order_by('id')
-
-        for post in post_list:
-            post_id = str(post.id)
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.options(url)
-            self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    def test_detail_positive_cases(self):
-        """Test positive API calls to post-detail endpoint"""
-
-        post_list = Post.objects.all().order_by('id')
-
-        for post in post_list:
-
-            post_id = str(post.id)
-            serializer = PostSerializer(post)
-            content = JSONRenderer().render(serializer.data)
-
-            # name of viewset is post-detail
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.get(url)
-
-            self.assertEqual(response.status_code, status.HTTP_200_OK)
-            self.assertEqual(response.accepted_media_type, 'application/json')
-            self.assertEqual(response.render().content, content)
-
-    def test_detail_post_cases(self):
-        """Test HTTP POST API calls to post-detail endpoint"""
-
-        post_list_before = Post.objects.all().order_by('id')
-
-        for post in post_list_before:
-            post_id = str(post.id)
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.post(url, self.data_1, format='json')
-            self.assertEqual(response.status_code,
-                             status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        post_list_after = Post.objects.all().order_by('id')
-        self.assertEqual(len(post_list_before), len(post_list_after))
-
-        for post in post_list_before:
-            self.assertEqual(Post.objects.get(id=post.id), post)
-
-    def test_detail_put_cases(self):
-        """Test HTTP PUT API calls to post-detail endpoint"""
-
-        post_list_before = Post.objects.all().order_by('id')
-
-        for post in post_list_before:
-            post_id = str(post.id)
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.put(url, self.data_1, format='json')
-            self.assertEqual(response.status_code,
-                             status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        post_list_after = Post.objects.all().order_by('id')
-        self.assertEqual(len(post_list_before), len(post_list_after))
-
-        for post in post_list_before:
-            self.assertEqual(Post.objects.get(id=post.id), post)
-
-    def test_detail_unauthenticated_cases(self):
-        """Test unauthenticated API calls to post-detail endpoint"""
-
-        self.unauthenticate()
-        post_list_before = Post.objects.all().order_by('id')
-
-        for post in post_list_before:
-
-            post_id = str(post.id)
-            url = reverse('post-detail', args=[post_id])
-            response = self.client.delete(url)
-            self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-            response = self.client.get(url)
-            self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-            response = self.client.head(url)
-            self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-            response = self.client.options(url)
-            self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-            response = self.client.post(url, self.data_1, format='json')
-            self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-            response = self.client.put(url, self.data_1, format='json')
-            self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        post_list_after = Post.objects.all().order_by('id')
-        self.assertEqual(len(post_list_before), len(post_list_after))
-
-        for post in post_list_before:
-            self.assertEqual(Post.objects.get(id=post.id), post)
-
-    def test_list_delete_cases(self):
-        """Test HTTP DELETE API calls to post-list endpoint"""
-
-        url = reverse('post-list')
-        post_list = Post.objects.all().order_by('id')
-        response = self.client.delete(url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        for post in post_list:
-            self.assertIsNotNone(Post.objects.get(id=post.id))
-
-    def test_list_get_cases(self):
-        """Test HTTP GET API calls to post-list endpoint"""
-
-        url = reverse('post-list')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        post_list = Post.objects.all().order_by('id')
-        stream = BytesIO(response.render().content)
-        # parse JSON in Python native datatype (dictionary)
-        # so we can iterate over the result
-        data = JSONParser().parse(stream)
-        results = data['results']
-        i = 0
-
-        for post in results:
-            # compare JSON objects
-            serializer = PostSerializer(post_list[i])
-            content_db = JSONRenderer().render(serializer.data)
-            serializer = PostSerializer(post)
-            content_api = JSONRenderer().render(serializer.data)
-            # assert is failing because PostSerializer sets
-            # owner to null but api returns the correct owner id
-            # need to fix PostSerializer later so that it
-            # sets the owner appropriately
-            # self.assertEqual(content_api, content_db)
-            i = i + 1
-
-    def test_list_head_cases(self):
-        """Test HTTP HEAD API calls to post-list endpoint"""
-
-        url = reverse('post-list')
-        response = self.client.head(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    def test_list_options_cases(self):
-        """Test HTTP OPTIONS API calls to post-list endpoint"""
-
-        url = reverse('post-list')
-        response = self.client.options(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    def test_list_post_cases(self):
-        """Test HTTP POST API calls to post-list endpoint"""
-
-        url = reverse('post-list')
-        post_list_before = Post.objects.all().order_by('id')
-
-        response = self.client.post(url, self.data_1, format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        response = self.client.post(url, self.data_2, format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        response = self.client.post(url, self.data_3, format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        post_list_after = Post.objects.all().order_by('id')
-        self.assertEqual(len(post_list_before), len(post_list_after))
-
-        for post in post_list_before:
-            self.assertEqual(Post.objects.get(id=post.id), post)
-
-    def test_list_put_cases(self):
-        """Test HTTP PUT API calls to post-list endpoint"""
-
-        url = reverse('post-list')
-        post_list_before = Post.objects.all().order_by('id')
-
-        response = self.client.put(url, self.data_1, format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        response = self.client.put(url, self.data_2, format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        response = self.client.put(url, self.data_3, format='json')
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
-
-        post_list_after = Post.objects.all().order_by('id')
-        self.assertEqual(len(post_list_before), len(post_list_after))
-
-        for post in post_list_before:
-            self.assertEqual(Post.objects.get(id=post.id), post)
-
-    def test_list_unauthenticated_cases(self):
-        """Test unauthenticated API calls to post-list endpoint"""
-
-        self.unauthenticate()
-        url = reverse('post-list')
-        post_list_before = Post.objects.all().order_by('id')
-
-        response = self.client.delete(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.head(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.options(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.post(url, self.data_1, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        response = self.client.put(url, self.data_1, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-        post_list_after = Post.objects.all().order_by('id')
-        self.assertEqual(len(post_list_before), len(post_list_after))
-
-        for post in post_list_before:
-            self.assertEqual(Post.objects.get(id=post.id), post)
-
-    def tearDown(self):
-        """Unauthenticate from API on teardown"""
-        self.unauthenticate()
+        """Setup the test database"""
+
+        self.u1 = User.objects.create_superuser(username='admin',
+                                                password='password',
+                                                email='')
+
+        self.u2 = User.objects.create_superuser(username='admin2',
+                                                password='password2',
+                                                email='')
+
+        self.u1.save()
+        self.u2.save()
+
+        self.o1 = Pcuser(user=self.u1)
+        self.o2 = Pcuser(user=self.u2)
+
+        self.o1.save()
+        self.o2.save()
+
+        self.p1 = Post(owner=self.o1,
+                       title_post="Title 1",
+                       description_post="Description 1")
+
+        self.p2 = Post(owner=self.o2,
+                       title_post="Title 2",
+                       description_post="Description 2")
+
+        self.p3 = Post(owner=self.o1,
+                       title_post="Title 3",
+                       description_post="Description 3")
+
+        self.p4 = Post(owner=self.o2,
+                       title_post="Title 4",
+                       description_post="Description 4")
+
+        self.p5 = Post(owner=self.o1,
+                       title_post="Title 5",
+                       description_post="Description 5")
+
+        self.p1.save()
+        self.p2.save()
+        self.p3.save()
+        self.p4.save()
+        self.p5.save()
+
+    def test_create_revpost(self):
+
+        revpost = create_revpost(self.o1,
+                                 self.p1,
+                                 self.p1.title_post,
+                                 self.p1.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o1)
+        self.assertEqual(revpost.owner_rev_post, self.p1)
+        self.assertEqual(revpost.title_post_rev, self.p1.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p1.description_post)
+
+        revpost = create_revpost(self.o1,
+                                 self.p2,
+                                 self.p2.title_post,
+                                 self.p2.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o1)
+        self.assertEqual(revpost.owner_rev_post, self.p2)
+        self.assertEqual(revpost.title_post_rev, self.p2.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p2.description_post)
+
+        revpost = create_revpost(self.o1,
+                                 self.p3,
+                                 self.p3.title_post,
+                                 self.p3.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o1)
+        self.assertEqual(revpost.owner_rev_post, self.p3)
+        self.assertEqual(revpost.title_post_rev, self.p3.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p3.description_post)
+
+
+        revpost = create_revpost(self.o2,
+                                 self.p1,
+                                 self.p1.title_post,
+                                 self.p1.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o2)
+        self.assertEqual(revpost.owner_rev_post, self.p1)
+        self.assertEqual(revpost.title_post_rev, self.p1.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p1.description_post)
+
+        revpost = create_revpost(self.o2,
+                                 self.p4,
+                                 self.p4.title_post,
+                                 self.p4.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o2)
+        self.assertEqual(revpost.owner_rev_post, self.p4)
+        self.assertEqual(revpost.title_post_rev, self.p4.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p4.description_post)
+
+        revpost = create_revpost(self.o2,
+                                 self.p5,
+                                 self.p5.title_post,
+                                 self.p5.description_post)
+
+        self.assertIsNotNone(revpost)
+        self.assertEqual(RevPost.objects.get(pk=revpost.id), revpost)
+        self.assertEqual(revpost.owner_rev, self.o2)
+        self.assertEqual(revpost.owner_rev_post, self.p5)
+        self.assertEqual(revpost.title_post_rev, self.p5.title_post)
+        self.assertEqual(revpost.description_post_rev,
+                         self.p5.description_post)
+
+        revpost_list = RevPost.objects.filter(owner_rev_id=self.o1.id)
+        self.assertIsNotNone(revpost_list)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o1,
+                                                    owner_rev_post=self.p1))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o1,
+                                                    owner_rev_post=self.p2))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o1,
+                                                    owner_rev_post=self.p3))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o1,
+                                                owner_rev_post=self.p4))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o1,
+                                                owner_rev_post=self.p5))
+
+        revpost_list = RevPost.objects.filter(owner_rev_id=self.o2.id)
+        self.assertIsNotNone(revpost_list)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o2,
+                                                    owner_rev_post=self.p1))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o2,
+                                                    owner_rev_post=self.p4))
+        self.assertIsNotNone(RevPost.objects.filter(owner_rev=self.o2,
+                                                    owner_rev_post=self.p5))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o2,
+                                                owner_rev_post=self.p2))
+        self.assertFalse(RevPost.objects.filter(owner_rev=self.o2,
+                                                owner_rev_post=self.p3))
+
+        revpost = create_revpost(None,
+                                 self.p1,
+                                 self.p1.title_post,
+                                 self.p1.description_post)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(self.o1,
+                                 None,
+                                 self.p1.title_post,
+                                 self.p1.description_post)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(self.o1,
+                                 self.p1,
+                                 None,
+                                 self.p1.description_post)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(self.o1,
+                                 self.p1,
+                                 self.p1.title_post,
+                                 None)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(None,
+                                 self.p1,
+                                 self.p1.title_post,
+                                 None)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(self.o1,
+                                 None,
+                                 self.p1.title_post,
+                                 None)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(self.o1,
+                                 None,
+                                 None,
+                                 None)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(None,
+                                 None,
+                                 None,
+                                 self.p1.description_post)
+
+        self.assertIsNone(revpost)
+
+        revpost = create_revpost(None,
+                                 None,
+                                 None,
+                                 None)
+
+        self.assertIsNone(revpost)
+
+    def test_delete_post_by_id(self):
+
+        self.assertTrue(delete_post_by_id(self.p1.id))
+        self.assertTrue(delete_post_by_id(self.p2.id))
+        self.assertTrue(delete_post_by_id(self.p3.id))
+
+        self.assertFalse(delete_post_by_id(-999999))
+        self.assertFalse(delete_post_by_id(-1))
+        self.assertFalse(delete_post_by_id(100))
+        self.assertFalse(delete_post_by_id(200))
+        self.assertFalse(delete_post_by_id(300))
+        self.assertFalse(delete_post_by_id(400))
+        self.assertFalse(delete_post_by_id(500))
+        self.assertFalse(delete_post_by_id(600))
+        self.assertFalse(delete_post_by_id(999))
+        self.assertFalse(delete_post_by_id(999999))
+
+    def test_get_post_by_id(self):
+
+        post = get_post_by_id(self.p1.id)
+        self.assertIsNotNone(post)
+        self.assertEqual(post, self.p1)
+        self.assertEqual(post.id, self.p1.id)
+        self.assertEqual(post.owner, self.p1.owner)
+        self.assertEqual(post.title_post, self.p1.title_post)
+        self.assertEqual(post.description_post, self.p1.description_post)
+
+        post = get_post_by_id(self.p2.id)
+        self.assertIsNotNone(post)
+        self.assertEqual(post, self.p2)
+        self.assertEqual(post.id, self.p2.id)
+        self.assertEqual(post.owner, self.p2.owner)
+        self.assertEqual(post.title_post, self.p2.title_post)
+        self.assertEqual(post.description_post, self.p2.description_post)
+
+        post = get_post_by_id(self.p3.id)
+        self.assertIsNotNone(post)
+        self.assertEqual(post, self.p3)
+        self.assertEqual(post.id, self.p3.id)
+        self.assertEqual(post.owner, self.p3.owner)
+        self.assertEqual(post.title_post, self.p3.title_post)
+        self.assertEqual(post.description_post, self.p3.description_post)
+
+        self.assertIsNone(get_post_by_id(-999999))
+        self.assertIsNone(get_post_by_id(-1))
+        self.assertIsNone(get_post_by_id(100))
+        self.assertIsNone(get_post_by_id(200))
+        self.assertIsNone(get_post_by_id(300))
+        self.assertIsNone(get_post_by_id(999))
+        self.assertIsNone(get_post_by_id(999999))
+
+        self.assertNotEqual(get_post_by_id(-999999), self.p1)
+        self.assertNotEqual(get_post_by_id(-1), self.p1)
+        self.assertNotEqual(get_post_by_id(100), self.p1)
+        self.assertNotEqual(get_post_by_id(200), self.p1)
+        self.assertNotEqual(get_post_by_id(300), self.p1)
+        self.assertNotEqual(get_post_by_id(999), self.p1)
+        self.assertNotEqual(get_post_by_id(999999), self.p1)
+
+        self.assertNotEqual(get_post_by_id(-999999), self.p2)
+        self.assertNotEqual(get_post_by_id(-1), self.p2)
+        self.assertNotEqual(get_post_by_id(100), self.p2)
+        self.assertNotEqual(get_post_by_id(200), self.p2)
+        self.assertNotEqual(get_post_by_id(300), self.p2)
+        self.assertNotEqual(get_post_by_id(999), self.p2)
+        self.assertNotEqual(get_post_by_id(999999), self.p2)
+
+        self.assertNotEqual(get_post_by_id(-999999), self.p3)
+        self.assertNotEqual(get_post_by_id(-1), self.p3)
+        self.assertNotEqual(get_post_by_id(100), self.p3)
+        self.assertNotEqual(get_post_by_id(200), self.p3)
+        self.assertNotEqual(get_post_by_id(300), self.p3)
+        self.assertNotEqual(get_post_by_id(999), self.p3)
+        self.assertNotEqual(get_post_by_id(999999), self.p3)
+
+        self.assertNotEqual(get_post_by_id(self.p1.id), self.p2)
+        self.assertNotEqual(get_post_by_id(self.p1.id), self.p3)
+
+        self.assertNotEqual(get_post_by_id(self.p2.id), self.p1)
+        self.assertNotEqual(get_post_by_id(self.p2.id), self.p3)
+
+        self.assertNotEqual(get_post_by_id(self.p3.id), self.p1)
+        self.assertNotEqual(get_post_by_id(self.p3.id), self.p2)
+
+    def test_get_revposts_of_owner(self):
+
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_1 = create_revpost(self.o1,
+                                   self.p1,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p1)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+
+        revpost_2 = create_revpost(self.o1,
+                                   self.p1,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p1)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+
+        revpost_3 = create_revpost(self.o1,
+                                   self.p1,
+                                   "Test title 3",
+                                   "Test description 3")
+        revpost_list = get_revposts_of_owner(self.p1.id)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        self.assertIn(revpost_3, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_3.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p1)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 3")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 3")
+
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_1 = create_revpost(self.o1,
+                                   self.p2,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p2)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+        revpost_2 = create_revpost(self.o1,
+                                   self.p2,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p2)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+
+        revpost_3 = create_revpost(self.o1,
+                                   self.p2,
+                                   "Test title 3",
+                                   "Test description 3")
+        revpost_list = get_revposts_of_owner(self.p2.id)
+        self.assertEqual(len(revpost_list), 3)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        self.assertIn(revpost_3, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_3.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o1)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p2)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 3")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 3")
+
+        revpost_list = get_revposts_of_owner(self.p4.id)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_1 = create_revpost(self.o2,
+                                   self.p4,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p4.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p4)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+
+        revpost_2 = create_revpost(self.o2,
+                                   self.p4,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p4.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p4)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+        revpost_1 = create_revpost(self.o2,
+                                   self.p5,
+                                   "Test title 1",
+                                   "Test description 1")
+        revpost_list = get_revposts_of_owner(self.p5.id)
+        self.assertEqual(len(revpost_list), 1)
+        self.assertIn(revpost_1, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_1.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p5)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 1")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 1")
+
+        revpost_2 = create_revpost(self.o2,
+                                   self.p5,
+                                   "Test title 2",
+                                   "Test description 2")
+        revpost_list = get_revposts_of_owner(self.p5.id)
+        self.assertEqual(len(revpost_list), 2)
+        self.assertIn(revpost_1, revpost_list)
+        self.assertIn(revpost_2, revpost_list)
+        revpost_compare = RevPost.objects.get(pk=revpost_2.id)
+        self.assertEqual(revpost_compare.owner_rev, self.o2)
+        self.assertEqual(revpost_compare.owner_rev_post, self.p5)
+        self.assertEqual(revpost_compare.title_post_rev, "Test title 2")
+        self.assertEqual(revpost_compare.description_post_rev,
+                         "Test description 2")
+
+        revpost_list = get_revposts_of_owner(-999999)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(-1)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(100)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(200)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(300)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(999)
+        self.assertEqual(len(revpost_list), 0)
+
+        revpost_list = get_revposts_of_owner(999999)
+        self.assertEqual(len(revpost_list), 0)

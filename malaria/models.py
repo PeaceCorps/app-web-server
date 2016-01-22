@@ -6,16 +6,16 @@ from webhub.models import Pcuser
 class Post(models.Model):
     # The owner of the post
     owner = models.ForeignKey(Pcuser, null=False, related_name='owner')
-    title_post = models.CharField(max_length=100,
+    title_post = models.CharField(max_length=1000,
                                   validators=[
                                       RegexValidator(
-                                          r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(!)|(:)]+$'
+                                          r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                       )]
                                   )
-    description_post = models.CharField(max_length=5000,
+    description_post = models.TextField(max_length=20000,
                                         validators=[
                                             RegexValidator(
-                                                r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(!)|(:)]+$'
+                                                r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
                                             )]
                                         )
     # link to important documents
@@ -37,15 +37,21 @@ class RevPost(models.Model):
     # The user who is editing the post
     owner_rev = models.ForeignKey(Pcuser, null=False, related_name='owner_rev')
     # revised title
-    title_post_rev = models.CharField(max_length=300)
+    title_post_rev = models.CharField(max_length=1000,
+                                      validators=[
+                                          RegexValidator(
+                                              r'^[(A-Z)|(a-z)|(0-9)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
+                                          )]
+                                      )
     # revised description
-    description_post_rev = models.CharField(max_length=2000)
+    description_post_rev = models.TextField(max_length=20000,
+                                        validators=[
+                                            RegexValidator(
+                                                r'^[(A-Z)|(a-z)|(0-9)|(\n)|(\s)|(\.)|(,)|(\-)|(_)|(!)|(:)|(%)]+$'
+                                            )]
+                                        )
     # field to note the timestamp when the revised version was created
     created = models.DateTimeField(auto_now_add=True)
-    # change in title
-    title_change = models.BooleanField(default=False)
-    # change in description
-    description_change = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.owner_rev.user.username

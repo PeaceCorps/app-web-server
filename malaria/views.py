@@ -1,62 +1,47 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from rest_framework import status
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from malaria.forms import PostForm
-from malaria.models import Post, RevPost
-from malaria.services import delete_post_by_id, get_post_by_id, get_revpost_of_owner
-from webhub.checker import check
-from webhub.models import Pcuser
-from webhub.serializers import PostSerializer, RevPostSerializer
+from malaria.models import Post
+from malaria.services import create_post_from_form, create_revpost, \
+    delete_post_by_id, get_post_by_id, get_revposts_of_owner
 
 
 def list_posts(request):
+
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
+
     post_list = Post.objects.all()
     return render(request,
                   'malaria/list_posts.html',
                   {'post_list': post_list})
 
 
-def view_post(request, post_id):
-
-    retval = check(request)
-    if retval is not None:
-        return retval
-
-    post = get_post_by_id(post_id)
-    revpost = get_revpost_of_owner(post_id)
-    # revpost may not exist yet so do not check it
-    if post:
-        return render(request,
-                      'malaria/view_post.html',
-                      {'post': post,
-                       'revpost': revpost})
-    else:
-        raise Http404
-
-
 def create_post(request):
 
-    # check if the user is logged in
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     form = PostForm()
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.owner = request.user.pcuser
-            post.save()
-            return render(request,
-                          'malaria/notice.html',
-                          {'text': 'Post created successfully.',
-                           'text1': 'Click here to view post.',
-                           'post': post})
+
+            title = form.cleaned_data['title_post']
+            description = form.cleaned_data['description_post']
+            owner = request.user.pcuser
+            post = create_post_from_form(form, owner)
+
+            if post:
+                revpost = create_revpost(owner, post, title, description)
+                if revpost:
+                    return HttpResponseRedirect(reverse('malaria:list_posts'))
+                else:
+                    raise Http404
+            else:
+                raise Http404
+
     return render(request,
                   'malaria/create_post.html',
                   {'form': form})
@@ -64,9 +49,8 @@ def create_post(request):
 
 def edit_post(request, post_id):
 
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     post = get_post_by_id(post_id)
     if post:
@@ -87,37 +71,20 @@ def edit_post(request, post_id):
                 if (orig_title != edited_title) or \
                    (orig_desc != edited_desc):
 
-                    post = form.save(commit=False)
-                    post.owner = owner
-                    post.save()
+                    post = create_post_from_form(form, owner)
 
-                    revpost_title_change = False
-                    revpost_desc_change = False
+                    if post:
+                        revpost = create_revpost(owner,
+                                                 post,
+                                                 edited_title,
+                                                 edited_desc)
+                        if not revpost:
+                            raise Http404
+                    else:
+                        raise Http404
 
-                    if(orig_title != edited_title):
-                        revpost_title_change = True
-                    if(orig_desc != edited_desc):
-                        revpost_desc_change = True
-
-                    revpost = RevPost(owner_rev=owner,
-                                      owner_rev_post=post,
-                                      title_post_rev=orig_title,
-                                      description_post_rev=orig_desc,
-                                      title_change=revpost_title_change,
-                                      description_change=revpost_desc_change)
-                    revpost.save()
-
-                    return render(request,
-                                  'malaria/notice.html',
-                                  {'text': 'Post edited successfully.',
-                                   'text1': 'Click here to view post.',
-                                   'post': post})
-                else:
-                    return render(request,
-                                  'malaria/notice.html',
-                                  {'text': 'No changes to Post made.',
-                                   'text1': 'Click here to view post.',
-                                   'post': post})
+                return HttpResponseRedirect(reverse('malaria:view_post',
+                                                    args=(post_id,)))
             else:
                 return render(request,
                               'malaria/edit_post.html',
@@ -133,9 +100,8 @@ def edit_post(request, post_id):
 
 def delete_post(request, post_id):
 
-    retval = check(request)
-    if retval is not None:
-        return retval
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
     if request.method == 'POST':
         if delete_post_by_id(post_id):
@@ -148,58 +114,18 @@ def delete_post(request, post_id):
                       {'post_id': post_id})
 
 
-class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Post endpoint that provides `list` and `detail` actions
-    `list` action returns a list of all Posts
-    `detail` action returns a particular Post instance based on id
-    """
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+def view_post(request, post_id):
 
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('webhub:index'))
 
-@api_view(['GET', 'POST'])
-def revpost_list(request):
-    if request.method == 'GET':
-        revpost = RevPost.objects.all()
-        serializer = RevPostSerializer(revpost, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = RevPostSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def revpost_detail(request, pk):
-    try:
-        revpost = RevPost.objects.get(pk=pk)
-    except Pcuser.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        # to do: the post below is undefined, fix it
-        serializer = RevPostSerializer(post)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = RevPostSerializer(post, data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        revpost.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class RevPostViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = RevPost.objects.all()
-    serializer_class = RevPostSerializer
+    post = get_post_by_id(post_id)
+    revpost_list = get_revposts_of_owner(post_id)
+    # revpost may not exist yet so do not check it
+    if post:
+        return render(request,
+                      'malaria/view_post.html',
+                      {'post': post,
+                       'revpost_list': revpost_list})
+    else:
+        raise Http404

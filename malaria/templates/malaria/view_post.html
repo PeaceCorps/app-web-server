@@ -1,67 +1,90 @@
 {% extends "infohub/base.html" %}    
 
 {% block content %}
-<head>
-    <title>Post | {{ post.title_post }}</title>
-</head>
-<body>
-    <br><br><br><br><br><br>
-    <center><h2><font color="#2c0f00"> Malaria : infoHub</font></h2></center>
-    <div style="width:600px; height:auto; margin:0 auto; background-color:#0d8b97;">
-        <br>
-        <center><b><h3><font color="white">View Post</font></h3></b></center>
-        <br>
-        <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-5">
-                <p><font color="white"><h4>Title : </h4></font></p>
-            </div>
-            <div class="col-md-6">
-                <p><font color="white"><h4>{{ post.title_post }}</h4></font></p>
-            </div>
+<br><br><br><br><br><br>
+<center><h2><font color="#2c0f00"> Malaria : infoHub</font></h2></center>
+<div class="well">
+    <h2 class="text-center inverted-font">View Post</h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Title:</strong></h4>
         </div>
-        <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-5">
-                <p><font color="white"><h4>Description : </h4></font></p>
-            </div>
-            <div class="col-md-6">
-                <p><font color="white"><h4>{{ post.description_post }}</h4></font></p>
-            </div>
-        </div><br>
-        <br>    
-        <center>
-            <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-default">Edit</a>
-            <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-default">Delete</a>
-        </center>
-        <br>
+        <div class="col-sm-2">
+            <h4 class="inverted-font">
+                {{ post.title_post }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Description:</strong></h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ post.description_post|linebreaksbr }}
+            </h4>
+        </div>
     </div>
     <br>
-    <div style="width:600px; height:auto; margin:0 auto; background-color:#0d8b97;"><br>
-        <center><b><h4><font color="white"><u>Revision History of this Post</u></font></h4></b></center><br>
-        <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-10">    
-                <h5><font color="white">The post was created by <a href="/profile/?id={{post.owner.id}}"><font color="white"><b><u>{{ post.owner }}</u></b></font></a> on {{ post.created }}</font></h5>
-                {% for rev in revpost %}
-                    <li style="color:white"><h5><font color="white"><b>The post was updated by <a href="/profile/?id={{rev.owner_rev.user.id}}"><font color="white"><b><u>{{ rev.owner_rev.user.first_name }}</b></u></font></a> on {{ rev.created }}</b></font></h5></li>
-                    <h5><font color="#e2d7bb">
-                    {% if rev.title_change %}
-                        The title has been changed from "{{ rev.title_post_rev }}" to "{{ post.title_post }}"
-                    {% endif %}
-                    {% if rev.description_change %}
-                        The description has been changed from "{{ rev.description_post_rev }}" to "{{ post.description_post }}"
-                    {% endif %}
-                    </font></h5>    
-                {% endfor %}
-            </div>
-            <div class="col-md-1">
-            </div>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <a href="{% url 'malaria:list_posts' %}" class="btn btn-default">Back to Post List</a>
+            <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
         </div>
     </div>
-    <br><br>
-</body>
+</div>
+<div class="well">
+    <h2 class="text-center inverted-font">Revision History</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <h4 class="inverted-font"><strong>Author</strong></h4>
+                </th>
+                <th>
+                    <h4 class="inverted-font"><strong>Date Updated</strong></h4>
+                </th>
+                <th>
+                    <h4 class="inverted-font"><strong>Title</strong></h4>
+                </th>
+                <th>
+                    <h4 class="inverted-font"><strong>Description</strong></h4>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for revpost in revpost_list %}
+                <tr>
+                    <td>
+                        <h4 class="inverted-font">
+                            {% if revpost.owner_rev.user.first_name or revpost.owner_rev.user.last_name %}
+                                {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
+                            {% else %}
+                                {{ revpost.owner_rev.user.username }}
+                            {% endif %}
+                        </h4>
+                    </td>
+                    <td>
+                        <h4 class="inverted-font">
+                            {{ revpost.created }}
+                        </h4>
+                    </td>
+                    <td>
+                        <h4 class="inverted-font">
+                            {{ revpost.title_post_rev }}
+                        </h4>
+                    </td>
+                    <td>
+                        <h4 class="inverted-font">
+                            {{ revpost.description_post_rev|linebreaksbr }}
+                        </h4>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
