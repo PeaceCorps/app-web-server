@@ -320,7 +320,7 @@ class MalariaTests(TestCase):
         revpost_1 = create_revpost(self.o1,
                                    self.p1,
                                    "Test title 1",
-                                   "Test description 3")
+                                   "Test description 1")
         revpost_list = get_revposts_of_owner(self.p1.id)
         self.assertEqual(len(revpost_list), 1)
         self.assertIn(revpost_1, revpost_list)
