@@ -24,8 +24,7 @@ def create_revpost(owner, post, title, description):
         revpost = RevPost(owner_rev=owner,
                           owner_rev_post=post,
                           title_post_rev=title,
-                          description_post_rev=description,
-                          title_change=True)
+                          description_post_rev=description)
         revpost.save()
 
     return revpost
