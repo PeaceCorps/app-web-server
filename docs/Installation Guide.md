@@ -4,19 +4,19 @@
 This tutorial assumes that the user is installing and running the project under the Ubuntu Virtual Machine that is provided by PeaceCorps.
 
 ## Table of Contents
-1. [Install git](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-git)
-2. [Clone Project](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#clone-project)
-3. [Install Django and PostgreSQL](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-django-and-postgresql)
-4. [Install VirtualBox and Vagrant](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-virtualbox-and-vagrant)
-5. [Download PeaceCorps Ubuntu Virtual Machine](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#download-peacecorps-ubuntu-virtual-machine)
-6. [Using Vagrant](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#using-vagrant)
-7. [Install Project Dependencies](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-project-dependencies)
-8. [Setup PostgreSQL](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#setup-postgresql)
-9. [Update settings.py](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#update-settingspy)
-10. [Generate Database Tables Corresponding to Django Models](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#generate-database-tables-corresponding-to-django-models)
-11. [Run Development Server](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#run-development-server)
-12. [Try out Mobile App Control Center](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#try-out-mobile-app-control-center)
-13. [Exit the Virtual Machine](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#exit-the-virtual-machine)
+1. [Install git](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#install-git)
+2. [Clone Project](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#clone-project)
+3. [Install Django and PostgreSQL](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#install-django-and-postgresql)
+4. [Install VirtualBox and Vagrant](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#install-virtualbox-and-vagrant)
+5. [Download PeaceCorps Ubuntu Virtual Machine](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#download-peacecorps-ubuntu-virtual-machine)
+6. [Using Vagrant](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#using-vagrant)
+7. [Install Project Dependencies](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#install-project-dependencies)
+8. [Setup PostgreSQL](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#setup-postgresql)
+9. [Update settings.py](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#update-settingspy)
+10. [Generate Database Tables Corresponding to Django Models](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#generate-database-tables-corresponding-to-django-models)
+11. [Run Development Server](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#run-development-server)
+12. [Try out Mobile App Control Center](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#try-out-mobile-app-control-center)
+13. [Exit the Virtual Machine](https://github.com/systers/app-web-server/blob/develop/docs/Installation%20Guide.md#exit-the-virtual-machine)
 
 ## Install git
 
@@ -30,7 +30,7 @@ Clone the project from GitHub by running the following command:
 
 For my project, this would correspond to:
 
-    git clone git@github.com:Nerdylicious/app-web-server.git
+    git clone git@github.com:systers/app-web-server.git
 
 ## Install Django and PostgreSQL
 
@@ -54,7 +54,7 @@ Install VirtualBox and Vagrant by running the installers.
 
 ## Download PeaceCorps Ubuntu Virtual Machine
 
-A Vagrant file is located in the top level directory for the project (at [https://github.com/Nerdylicious/app-web-server/blob/master/Vagrantfile](https://github.com/Nerdylicious/app-web-server/blob/master/Vagrantfile) found on GitHub. In case you do not have a copy of this Vagrant file, here are it's contents:
+A Vagrant file is located in the top level directory for the project (at [https://github.com/systers/app-web-server/blob/develop/Vagrantfile](https://github.com/systers/app-web-server/blob/develop/Vagrantfile) found on GitHub. In case you do not have a copy of this Vagrant file, here are it's contents:
 ```
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -123,7 +123,7 @@ Install project dependencies:
     sudo apt-get install libpq-dev
     sudo apt-get install python-pip
 
-Install all Python dependencies specified in the [requirements.txt](https://github.com/Nerdylicious/app-web-server/blob/master/requirements.txt) file using pip:
+Install all Python dependencies specified in the [requirements.txt](https://github.com/systers/app-web-server/blob/develop/requirements.txt) file using pip:
 
     sudo pip install Django==1.6.5
     sudo pip install Jinja2==2.7.3

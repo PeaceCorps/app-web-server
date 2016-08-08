@@ -6,9 +6,9 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.test import APITestCase
-from malaria.models import Post
+from malaria_web.models import Post
 from malaria_api.serializers import PostSerializer
-from webhub.models import Pcuser
+from signup.models import Pcuser
 
 
 class PostAPITestCase(APITestCase):

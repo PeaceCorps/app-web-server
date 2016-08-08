@@ -1,0 +1,38 @@
+{% extends "infohub/base.html" %}    
+
+{% block content %}
+<br><br><br><br><br><br>
+<center><h2><font color="#2c0f00"> pcsa : infoHub</font></h2></center>
+<div class="well">
+    <h2 class="text-center inverted-font">View Post</h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Title:</strong></h4>
+        </div>
+        <div class="col-sm-2">
+            <h4 class="inverted-font">
+                {{ post.title }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Description:</strong></h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ post.description|linebreaksbr }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <a href="{% url 'pcsa:list_posts' %}" class="btn btn-default">Back to Post List</a>
+            <a href="{% url 'pcsa:edit_post' post.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'pcsa:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

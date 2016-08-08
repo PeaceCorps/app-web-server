@@ -1,91 +1,21 @@
+from django.shortcuts import render
 import jinja2
-import smtplib
 import uuid
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from jinja2.ext import loopcontrols
-from rest_framework import viewsets
-from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from webhub.checker import check
-from webhub.models import *
 from webhub.serializers import *
+from signup.models import *
 
 
-# SMTP port for sending emails
-SMTP_PORT = 465
+jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['profiles/templates/profiles']), extensions=[loopcontrols])
 
-#link for the localhost
-website = "http://systerspcweb.herokuapp.com/"
-
-jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['ui']), extensions=[loopcontrols])
-
-#apis for malaria begin here
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    
-    
-#List all pcusers, or create a new pcuser.
-@api_view(['GET', 'POST'])
-def pcuser_list(request):
-    if request.method == 'GET':
-        pcuser = Pcuser.objects.all()
-        serializer = PcuserSerializer(pcuser, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = PcuserSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#Retrieve, update or delete a pcuser instance.
-@api_view(['GET', 'PUT', 'DELETE'])
-def pcuser_detail(request, pk):
-    try:
-        pcuser = Pcuser.objects.get(pk=pk)
-    except Pcuser.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = PcuserSerializer(pcuser)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = PcuserSerializer(pcuser, data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    elif request.method == 'DELETE':
-        pcuser.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-        
-#Calls index page
-def index(request):
-    return HttpResponse(jinja_environ.get_template('index.html').render({"pcuser":None}))
-    
-#Calls dashboard wish is shown after a user is logged in
-def dashboard(request):
-    
-    retval = check(request)
-    if retval <> None:
-        return retval
-    
-    template_values = {'pcuser' : request.user.pcuser,
-                    }
-    return HttpResponse(jinja_environ.get_template('dashboard.html').render(template_values)) 
-
-#Called when a user clicks login button. 
+# Create your views here.
 @csrf_exempt
 def login_do(request):
     username = request.REQUEST['username']
@@ -304,19 +234,3 @@ def change_pass_page(request):
         return retval
     return HttpResponse(jinja_environ.get_template('change_password.html').render({"pcuser":request.user.pcuser}))
         
-
-#called when user wishes to go to the about PeaceCorps
-def aboutPC(request):
-    return HttpResponse(jinja_environ.get_template('aboutPC.html').render({"pcuser":None}))  
-
-#called when user wishes to go to the Policies
-def policies(request):
-    return HttpResponse(jinja_environ.get_template('policies.html').render({"pcuser":None}))  
-
-#called when user wishes to go to the Important details
-def details(request):
-    return HttpResponse(jinja_environ.get_template('details.html').render({"pcuser":None}))  
-
-#called when user wishes to go to the Help
-def helpPC(request):
-    return HttpResponse(jinja_environ.get_template('helpPC.html').render({"pcuser":None}))  
