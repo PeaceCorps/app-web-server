@@ -121,3 +121,4 @@ EMAIL_PORT = 465
 SWAGGER_SETTINGS = {
     'is_authenticated': True,
 }
+
