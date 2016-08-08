@@ -5,7 +5,7 @@
 
 from django.http import HttpResponse
 from django.utils import timezone
-from webhub.models import *
+from signup.models import *
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 from django.contrib.auth import authenticate, login, logout
