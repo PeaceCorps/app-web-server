@@ -29,9 +29,12 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'infohub',
-    'malaria',
-    'peacetrack',
+    'malaria_web',
+    'malaria_api',
     'webhub',
+    'signup',
+    'profiles',
+    'pcsa',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,3 +123,4 @@ EMAIL_PORT = 465
 SWAGGER_SETTINGS = {
     'is_authenticated': True,
 }
+

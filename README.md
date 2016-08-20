@@ -1,4 +1,5 @@
-<h1>Malaria App Project</h1>
+Malaria App Project [![Build Status](https://travis-ci.org/Nerdylicious/app-web-server.svg?branch=master)](https://travis-ci.org/Nerdylicious/app-web-server)
+==============
 
 The malaria-app-readme repository is intended to be the central repo for discussions, decision making, and feedback about the project goals and features so that the user experience across platforms is uniform. Comments and coding for a specific platform can happen at the repositories linked to below.
 
