@@ -1,0 +1,84 @@
+{% extends 'infohub/base.html' %}
+{% block content %}
+
+    <br><br><br><br><br><br>
+    <center><h2><font color="#2c0f00"> Get Help Now : Posts </font></h2></center>
+{% if post_list %}
+    <div class="well">
+        <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-default pull-right">New Post</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <h3 class="inverted-font">Post</h3>
+                    </th>
+                    <th>
+                        <h3 class="inverted-font">Action</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in post_list %}
+                    <tr>
+                        <td>
+                            <h4 class="inverted-font">
+                                {{ post.title }}
+                            </h4>
+                        </td>
+                        <td>
+                            <a href="{% url 'pcsa_GHN:view_post' post.id %}" class="btn btn-default">View</a>
+                            <a href="{% url 'pcsa_GHN:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                            <a href="{% url 'pcsa_GHN:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="well">
+        <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-default pull-right">New Post</a>
+        <h3 class="text-center inverted-font">No Posts</h3>
+    </div>
+{% endif %}
+     {% if contact_list %}
+        <div class="well">
+        <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-default">Add new Contact</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <h3 class="inverted-font">Office</h3>
+                    </th>
+                    <th>
+                        <h3 class="inverted-font">Contact Number</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for c in contact_list %}
+                <tr>
+                    <td>
+                        <h3 class="inverted-font">{{ c.office_name }}</h3>
+                    </td>
+                    <td>
+                        <input type="tel" value="{{ c.contact_number }}" />
+                    </td>
+                    <td>
+                        <a href="{% url 'pcsa_GHN:edit_contact' c.id %}" class="btn-default">Save</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'pcsa_GHN:delete_contact' %}" class="btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+         {% else %}
+         <div class="well">
+         <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-default pull-right">Add Contact</a>
+        <h3 class="text-center inverted-font">No Contacts</h3>
+         </div>
+    {% endif %}
+{% endblock %}

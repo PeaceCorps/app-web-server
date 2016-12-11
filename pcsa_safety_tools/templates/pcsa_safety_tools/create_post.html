@@ -1,0 +1,65 @@
+{% extends "infohub/base.html" %}
+
+{% block content %}
+<br><br><br><br><br><br>
+<center><h2><font color="#2c0f00"> Safety Tools </font></h2></center>
+<div class="well">
+    <h2 class="text-center inverted-font">New Post</h2>
+    <br>
+    <form class="form-horizontal" action="{% url 'pcsa_safety_tools:create_post' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Category Id</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="number" name="category_id" value="{% if form.category_id.value %}{{ form.category_id.value }}{% endif %}">
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.category_id.errors %}
+                            {% for error in form.category_id.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Title</label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.title.errors %}
+                            {% for error in form.title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label inverted-font">Description</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="18" name="description">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                <p class="help-block inverted-font">
+                    <strong>
+                        {% if form.description.errors %}
+                            {% for error in form.description.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 col-sm-offset-2">
+                <button type="submit" class="btn btn-default">Submit</button>
+                <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br>
+{% endblock %}

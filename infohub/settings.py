@@ -29,9 +29,14 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'infohub',
-    'malaria',
-    'peacetrack',
+    'malaria_web',
+    'malaria_api',
     'webhub',
+    'signup',
+    'profiles',
+    'pcsa',
+    'pcsa_GHN',
+    'pcsa_safety_tools'
 )
 
 MIDDLEWARE_CLASSES = (

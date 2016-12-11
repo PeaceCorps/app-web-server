@@ -1,0 +1,26 @@
+{% extends "infohub/base.html" %}
+
+{% block content %}
+<br><br><br><br><br><br>
+<center>
+    <h2>
+        <font color="#2c0f00">Get Help Now</font>
+    </h2>
+</center>
+<div class="well">
+    <h2 class="text-center inverted-font">Delete Contact</h2>
+    <br>
+    <form action="{% url 'pcsa_GHN:delete_contact' contact_id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-offset-2 inverted-font">Are you sure you want to delete this Post?</label>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2">
+                <button type="submit" class="btn btn-danger">Yes, delete this Post</button>
+                <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

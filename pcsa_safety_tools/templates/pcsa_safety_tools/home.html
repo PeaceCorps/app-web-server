@@ -1,0 +1,46 @@
+{% extends 'infohub/base.html' %}
+{% block content %}
+<br><br><br><br><br><br>
+<center><h2><font color="#2c0f00"> Safety Tools : Posts </font></h2></center>
+{% for category in categories %}
+    {% if category %}
+        <div class="well">
+            <center><h2><font color="#2c0f00">  </font></h2></center>
+            <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-default pull-right">New Post</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        <h3 class="inverted-font">Post</h3>
+                    </th>
+                    <th>
+                        <h3 class="inverted-font">Action</h3>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in category %}
+                    <tr>
+                        <td>
+                            <h4 class="inverted-font">
+                                {{ post.title }}
+                            </h4>
+                        </td>
+                        <td>
+                            <a href="{% url 'pcsa_safety_tools:view_post' post.id %}" class="btn btn-default">View</a>
+                            <a href="{% url 'pcsa_safety_tools:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                            <a href="{% url 'pcsa_safety_tools:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="well">
+            <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-default pull-right">New Post</a>
+            <h3 class="text-center inverted-font">No Posts</h3>
+        </div>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

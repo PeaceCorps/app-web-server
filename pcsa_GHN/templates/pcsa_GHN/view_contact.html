@@ -1,0 +1,38 @@
+{% extends "infohub/base.html" %}    
+
+{% block content %}
+<br><br><br><br><br><br>
+<center><h2><font color="#2c0f00"> pcsa : infoHub</font></h2></center>
+<div class="well">
+    <h2 class="text-center inverted-font">View contact</h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Office Name:</strong></h4>
+        </div>
+        <div class="col-sm-2">
+            <h4 class="inverted-font">
+                {{ contact.office_name }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Number:</strong></h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ contact.contact_number }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-default">Back to Get Help Now</a>
+            <a href="{% url 'pcsa_GHN:edit_contact' contact.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'pcsa_GHN:delete_contact' contact.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

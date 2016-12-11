@@ -1,0 +1,90 @@
+{% extends "infohub/base.html" %}    
+
+{% block content %}
+<br><br><br><br><br><br>
+<center><h2><font color="#2c0f00"> Malaria : infoHub</font></h2></center>
+<div class="well">
+    <h2 class="text-center inverted-font">View Post</h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Title:</strong></h4>
+        </div>
+        <div class="col-sm-2">
+            <h4 class="inverted-font">
+                {{ post.title_post }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font"><strong>Description:</strong></h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ post.description_post|linebreaksbr }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <a href="{% url 'malaria:list_posts' %}" class="btn btn-default">Back to Post List</a>
+            <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'malaria:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+<div class="well">
+    <h2 class="text-center inverted-font">Revision History</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <h4 class="inverted-font"><strong>Author</strong></h4>
+                </th>
+                <th>
+                    <h4 class="inverted-font"><strong>Date Updated</strong></h4>
+                </th>
+                <th>
+                    <h4 class="inverted-font"><strong>Title</strong></h4>
+                </th>
+                <th>
+                    <h4 class="inverted-font"><strong>Description</strong></h4>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for revpost in revpost_list %}
+                <tr>
+                    <td>
+                        <h4 class="inverted-font">
+                            {% if revpost.owner_rev.user.first_name or revpost.owner_rev.user.last_name %}
+                                {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
+                            {% else %}
+                                {{ revpost.owner_rev.user.username }}
+                            {% endif %}
+                        </h4>
+                    </td>
+                    <td>
+                        <h4 class="inverted-font">
+                            {{ revpost.created }}
+                        </h4>
+                    </td>
+                    <td>
+                        <h4 class="inverted-font">
+                            {{ revpost.title_post_rev }}
+                        </h4>
+                    </td>
+                    <td>
+                        <h4 class="inverted-font">
+                            {{ revpost.description_post_rev|linebreaksbr }}
+                        </h4>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

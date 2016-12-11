@@ -1,0 +1,10 @@
+.navbar-btn-border {
+    color: #2c0f00;
+    border: 3px solid;
+    padding: 5px;
+    margin: 5px;
+}
+
+.navbar-btn-text {
+    color: #2c0f00;
+}

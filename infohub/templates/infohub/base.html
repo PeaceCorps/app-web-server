@@ -2,46 +2,61 @@
 {% load staticfiles %}
 <html>
     <head>
-        <link href="{% static "infohub/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
-        <link href="{% static "infohub/css/footer.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/bootstrap-3.3.5-dist/css/bootstrap.min.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/bootstrap-css-custom/navbar-default.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/bootstrap-css-custom/sticky-footer.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/bootstrap-css-custom/well.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/css/navbar-btn.css" %}" rel="stylesheet">
+        <link href="{% static "infohub/css/text-color.css" %}" rel="stylesheet">
     </head>
     <body>
-        <div class="navbar navbar-fixed-top" role="navigation" style="background-color:#e2d7bb; height:100px;">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <a href="/"><img src="http://i.imgur.com/2wwH5x2.gif" class="img-responsive" style="width:180px; height:90px; padding-bottom:5px; padding-top:10px;"></a>
-                        </div>
-                        <div class="col-md-10">
-                            <a class="navbar-brand" href="/" style="color:#2c0f00;"><h1>Mobile App Control Center</h1></a>
-                            {% if pcuser %}
-                                <div class="navbar-right" style="float:right; padding-top:10px; margin-right:-500px;">
-                                    <a href="/profile/?id={{pcuser.user.id}}"><h4><font color="#2c0f00" style="border:2px solid; padding:5px;">Welcome, <b>{{pcuser.user.first_name}}</b> !</font></a>
-                                    <a href="/logout_do/"><font color="#2c0f00" style="border:2px solid; padding:5px;">LogOut</font></a></h4>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
+                    <a class="navbar-brand" href="{% url 'webhub:dashboard' %}">
+                        <img class="navbar-brand-img" src="http://i.imgur.com/KKTKQJv.png?1">
+                    </a>
+                    <a class="navbar-brand hidden-xs" href="{% url 'webhub:dashboard' %}"><h1>Mobile App Control Center</h1></a>
                 </div>
+                {% if user.is_authenticated %}
+                    <div class="navbar-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav navbar-right text-uppercase">
+                            <li>
+                                <div class="navbar-btn-border">
+                                    <!--Update profile url so that its not hardcoded-->
+                                    <a href="/profile/?id={{ user.id }}">
+                                        <h4 class="navbar-btn-text">Profile</h4>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="navbar-btn-border">
+                                    <a href="{% url 'webhub:logout_do' %}">
+                                        <h4 class="navbar-btn-text">Log Out</h4>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
-        </div>
+        </nav>
         <div class="container">
             {% block content %}
             {% endblock %}
         </div>
-        <div class="footerBkg">
-            <div class="footerBtns">
-                <font size="4" color="#2c0f00">
-                    <a href="/aboutPC" title="Home" style="color:2c0f00;">About Peace Corps</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/policies/" title="Know about our team" style="color:2c0f00;">Policies</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/details/" title="FAQs" style="color:2c0f00;">Important Details</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="/helpPC/" title="Contact Us" style="color:2c0f00;">Help</a>&nbsp;&nbsp;
-                    <br><br>
-                </font>
+        <footer class="footer">
+            <div class="footer-content">
+                <a href="{% url 'webhub:aboutPC' %}"><h4 class="footer-mid-text">About Peace Corps</h4></a>
+                <h4 class="footer-mid-text"> | </h4>
+                <a href="{% url 'webhub:policies' %}"><h4 class="footer-mid-text">Policies</h4></a>
+                <h4 class="footer-mid-text"> | </h4>
+                <a href="{% url 'webhub:details' %}"><h4 class="footer-mid-text">Important Details</h4></a>
+                <h4 class="footer-mid-text"> | </h4>
+                <a href="{% url 'webhub:helpPC' %}"><h4 class="footer-mid-text">Help</h4></a>
+                <p class="footer-small-text">&copy;2015 PeaceCorps</p>
+                <a href="#">Return to Top</a>
             </div>
-            <p style="color:2c0f00;">&copy;2014 PeaceCrops</p>
-            <a href="#top" style="color:2c0f00;"><font size="2">Return to Top</font></a>
-        </div>
+        </footer>
     </body>
 </html>
