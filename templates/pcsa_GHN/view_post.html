@@ -28,7 +28,7 @@
         </div>
         <div class="col-sm-8">
             <h4 >
-                {{ ghnpost.description|linebreaksbr }}
+                {{ ghnpost.description|safe|linebreaksbr }}
             </h4>
         </div>
     </div>
@@ -87,7 +87,7 @@
         <div class="row">
             <br>
                 <div class="col-sm-1">
-                    <h4 >                
+                    <h4 >
                         <strong>Author</strong>
                     </h4>
                 </div>
@@ -140,7 +140,7 @@
                     </div>
                     <div class="col-sm-3">
                         <h5>
-                            {{ revpost.description_post_rev|linebreaksbr }}
+                            {{ revpost.description_post_rev|safe|linebreaksbr }}
                         </h5>
                     </div>
                     <div class="col-sm-2">

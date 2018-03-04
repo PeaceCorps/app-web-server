@@ -48,7 +48,7 @@
                                 </td>
         			            <td>
                                     <h5>
-            				            {{ ghnpost.description|truncatechars:50|linebreaks }}
+            				            {{ ghnpost.description|safe|truncatechars:50|linebreaks }}
             			            </h5>
                                 </td>
                                 <td>
