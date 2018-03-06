@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-7">
             <h4 >
-                {{ safetytoolspost.description|linebreaksbr }}
+                {{ safetytoolspost.description|safe|linebreaksbr }}
             </h4>
         </div>
     </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-sm-5">
                         <h5>
-                            {{ revpost.description_post_rev|linebreaksbr }}
+                            {{ revpost.description_post_rev|safe|linebreaksbr }}
                         </h5>
                     </div>
                 </div>

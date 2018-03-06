@@ -46,7 +46,7 @@
                                     </td>
                                     <td>
                                         <h5>
-                                            {{ safetytoolspost.description|truncatechars:50|linebreaks }}
+                                            {{ safetytoolspost.description|safe|truncatechars:50|linebreaks }}
                                         </h5>
                                     </td>
                                     <td>
