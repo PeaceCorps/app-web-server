@@ -1,0 +1,45 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    FirstAide : infoHub
+</h2>
+<div class="well">
+    <h2 class="text-center ">View Post</h2>
+    <br>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 >
+                <strong>Title:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-2">
+            <h4 >
+                {{ post.title }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 >
+                <strong>Description:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 >
+                {{ post.description|safe|linebreaksbr }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <a href="{% url 'pcsa:list_posts' %}" class="btn btn-default">Back to Post List</a>
+            <a href="{% url 'pcsa:edit_post' post.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'pcsa:delete_post' post.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+<br><br><br>
+{% endblock %}

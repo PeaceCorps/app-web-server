@@ -1,0 +1,404 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PCSA Get Help Now Views &#8212; MACC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pcsa-get-help-now-views">
+<h1>PCSA Get Help Now Views<a class="headerlink" href="#pcsa-get-help-now-views" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pcsa_GHN.views"></span><dl class="class">
+<dt id="pcsa_GHN.views.ContactViewSet">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">ContactViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ContactViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.ContactViewSet.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;Contact: qdq&gt;]&gt;</em><a class="headerlink" href="#pcsa_GHN.views.ContactViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ContactViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#pcsa_GHN.views.ContactViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ContactSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.CreateContactView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">CreateContactView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.CreateContactView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.CreateContactView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#pcsa_GHN.views.CreateContactView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ContactForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.views.CreateContactView.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.CreateContactView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreateContactView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.CreateContactView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Contact</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreateContactView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.CreateContactView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreateContactView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/gethelpnow/'</em><a class="headerlink" href="#pcsa_GHN.views.CreateContactView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreateContactView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/create_contact.html'</em><a class="headerlink" href="#pcsa_GHN.views.CreateContactView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.CreatePostView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">CreatePostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.CreatePostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.CreatePostView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#pcsa_GHN.views.CreatePostView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPostForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.views.CreatePostView.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.CreatePostView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreatePostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.CreatePostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreatePostView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.CreatePostView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreatePostView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/gethelpnow/'</em><a class="headerlink" href="#pcsa_GHN.views.CreatePostView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.CreatePostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/create_post.html'</em><a class="headerlink" href="#pcsa_GHN.views.CreatePostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.DeleteContactView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">DeleteContactView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.DeleteContactView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.DeleteContactView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.DeleteContactView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Contact</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.DeleteContactView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.DeleteContactView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.DeleteContactView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/gethelpnow/'</em><a class="headerlink" href="#pcsa_GHN.views.DeleteContactView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.DeleteContactView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/delete_contact.html'</em><a class="headerlink" href="#pcsa_GHN.views.DeleteContactView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.DeletePostView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">DeletePostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.DeletePostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.DeletePostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.DeletePostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.DeletePostView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.DeletePostView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.DeletePostView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/gethelpnow/'</em><a class="headerlink" href="#pcsa_GHN.views.DeletePostView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.DeletePostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/delete_post.html'</em><a class="headerlink" href="#pcsa_GHN.views.DeletePostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.ListPostView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">ListPostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ListPostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pcsa_GHN.views.ListPostView.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ListPostView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.views.ListPostView.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ListPostView.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ListPostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.ListPostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ListPostView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.ListPostView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ListPostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/home.html'</em><a class="headerlink" href="#pcsa_GHN.views.ListPostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.UpdateContactView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">UpdateContactView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.UpdateContactView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ContactForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.views.UpdateContactView.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdateContactView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Contact</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdateContactView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdateContactView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/gethelpnow/'</em><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdateContactView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/edit_contact.html'</em><a class="headerlink" href="#pcsa_GHN.views.UpdateContactView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.UpdatePostView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">UpdatePostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.UpdatePostView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPostForm</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.views.UpdatePostView.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdatePostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdatePostView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdatePostView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/gethelpnow/'</em><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.UpdatePostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/edit_post.html'</em><a class="headerlink" href="#pcsa_GHN.views.UpdatePostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.ViewContactView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">ViewContactView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ViewContactView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.ViewContactView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.ViewContactView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Contact</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ViewContactView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.ViewContactView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ViewContactView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/view_contact.html'</em><a class="headerlink" href="#pcsa_GHN.views.ViewContactView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.ViewPostView">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">ViewPostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ViewPostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.ViewPostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_GHN.views.ViewPostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ViewPostView.redirect_field_name">
+<code class="descname">redirect_field_name</code><em class="property"> = 'redirect_to'</em><a class="headerlink" href="#pcsa_GHN.views.ViewPostView.redirect_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ViewPostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_GHN/view_post.html'</em><a class="headerlink" href="#pcsa_GHN.views.ViewPostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.views.ghnPostsViewSet">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.views.</code><code class="descname">ghnPostsViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.views.ghnPostsViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_GHN.views.ghnPostsViewSet.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet [&lt;ghnPost: ce&gt;, &lt;ghnPost: huhu&gt;]&gt;</em><a class="headerlink" href="#pcsa_GHN.views.ghnPostsViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.views.ghnPostsViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#pcsa_GHN.views.ghnPostsViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ghnPostSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MACC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, yatna.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/modules/views/pcsa_GHN_view.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

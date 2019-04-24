@@ -1,0 +1,70 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    FirstAide : infoHub
+</h2>
+<div class="well">
+    <h2 class="text-center">Edit Post</h2>
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-2 control-label ">Category ID <span class="text-danger" >*</span></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="category_id" value="{% if form.category_id.value %}{{ form.category_id.value }}{% endif %}">
+                <p class="help-block ">
+                    <strong>
+                        {% if form.category_id.errors %}
+                            {% for error in form.category_id.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label ">Title <span class="text-danger" >*</span></label>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+                <p class="help-block ">
+                    <strong>
+                        {% if form.title.errors %}
+                            {% for error in form.title.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label ">Description <span class="text-danger" >*</span></label>
+            <div class="col-sm-9">
+              {% load wysiwyg %}
+              {% wysiwyg_setup %}
+                <textarea id="foo" class="form-control" rows="18" name="description" minlength=100>{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+              {% wysiwyg_editor "foo" %}
+                <p class="help-block ">
+                    <strong>
+                        {% if form.description.errors %}
+                            {% for error in form.description.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+    <br>
+</div>
+<br><br><br>
+{% endblock %}

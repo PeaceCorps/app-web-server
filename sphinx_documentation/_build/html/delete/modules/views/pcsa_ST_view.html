@@ -1,0 +1,232 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PCSA Safety Tool Views &#8212; MACC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pcsa-safety-tool-views">
+<h1>PCSA Safety Tool Views<a class="headerlink" href="#pcsa-safety-tool-views" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pcsa_safety_tools.views"></span><dl class="class">
+<dt id="pcsa_safety_tools.views.CreatePostView">
+<em class="property">class </em><code class="descclassname">pcsa_safety_tools.views.</code><code class="descname">CreatePostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.CreatePostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_safety_tools.views.CreatePostView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#pcsa_safety_tools.views.CreatePostView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPostForm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.CreatePostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_safety_tools.views.CreatePostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.CreatePostView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/safetytools/home/'</em><a class="headerlink" href="#pcsa_safety_tools.views.CreatePostView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.CreatePostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_safety_tools/create_post.html'</em><a class="headerlink" href="#pcsa_safety_tools.views.CreatePostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_safety_tools.views.DeletePostView">
+<em class="property">class </em><code class="descclassname">pcsa_safety_tools.views.</code><code class="descname">DeletePostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.DeletePostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_safety_tools.views.DeletePostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_safety_tools.views.DeletePostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.DeletePostView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/safetytools/home/'</em><a class="headerlink" href="#pcsa_safety_tools.views.DeletePostView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.DeletePostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_safety_tools/delete_post.html'</em><a class="headerlink" href="#pcsa_safety_tools.views.DeletePostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_safety_tools.views.ListPostView">
+<em class="property">class </em><code class="descclassname">pcsa_safety_tools.views.</code><code class="descname">ListPostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.ListPostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pcsa_safety_tools.views.ListPostView.get_context_data">
+<code class="descname">get_context_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.ListPostView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcsa_safety_tools.views.ListPostView.get_queryset">
+<code class="descname">get_queryset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.ListPostView.get_queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.ListPostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_safety_tools.views.ListPostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.ListPostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_safety_tools/home.html'</em><a class="headerlink" href="#pcsa_safety_tools.views.ListPostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_safety_tools.views.SafetyToolsPostViewSet">
+<em class="property">class </em><code class="descclassname">pcsa_safety_tools.views.</code><code class="descname">SafetyToolsPostViewSet</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.SafetyToolsPostViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_safety_tools.views.SafetyToolsPostViewSet.queryset">
+<code class="descname">queryset</code><em class="property"> = &lt;QuerySet []&gt;</em><a class="headerlink" href="#pcsa_safety_tools.views.SafetyToolsPostViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.SafetyToolsPostViewSet.serializer_class">
+<code class="descname">serializer_class</code><a class="headerlink" href="#pcsa_safety_tools.views.SafetyToolsPostViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPostSerializer</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_safety_tools.views.UpdatePostView">
+<em class="property">class </em><code class="descclassname">pcsa_safety_tools.views.</code><code class="descname">UpdatePostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.UpdatePostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_safety_tools.views.UpdatePostView.form_class">
+<code class="descname">form_class</code><a class="headerlink" href="#pcsa_safety_tools.views.UpdatePostView.form_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPostForm</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.UpdatePostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_safety_tools.views.UpdatePostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.UpdatePostView.success_url">
+<code class="descname">success_url</code><em class="property"> = '/safetytools/home/'</em><a class="headerlink" href="#pcsa_safety_tools.views.UpdatePostView.success_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.UpdatePostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_safety_tools/edit_post.html'</em><a class="headerlink" href="#pcsa_safety_tools.views.UpdatePostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_safety_tools.views.ViewPostView">
+<em class="property">class </em><code class="descclassname">pcsa_safety_tools.views.</code><code class="descname">ViewPostView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_safety_tools.views.ViewPostView" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa_safety_tools.views.ViewPostView.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa_safety_tools.views.ViewPostView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">SafetyToolsPost</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_safety_tools.views.ViewPostView.template_name">
+<code class="descname">template_name</code><em class="property"> = 'pcsa_safety_tools/view_post.html'</em><a class="headerlink" href="#pcsa_safety_tools.views.ViewPostView.template_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">MACC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, yatna.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../../_sources/delete/modules/views/pcsa_ST_view.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

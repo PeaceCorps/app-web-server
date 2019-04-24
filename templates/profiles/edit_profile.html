@@ -1,0 +1,169 @@
+{% load static %}
+
+{% include "infohub/index.html" %}
+
+<title>Edit Profile | {{ pcuser }}</title>
+<link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+<link href="{% static "css/edit_profile.css" %}" rel="stylesheet">
+
+{% block content %}
+<section class="container">
+    <div class="row">
+        <div class="content">
+            <div  style="margin-right: 30px; margin-left: 80px">
+                <span>
+                    <h3>Edit Profile</h3>
+                </span>
+            </div>
+            <img src="/static/{{form.instance.photo}}" alt="Unable to Load" class="img-circle" style="margin-top: 10px; margin-left: 25px; margin-bottom: 20px"> 
+            <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+        		<table class="table table-responsive">
+            		<tr>
+                        <td>   
+                            <label >
+                                Profile Picture:
+                            </label> 
+                        </td>
+                        <td>  
+                            <input type="file"  name="photo" accept=".jpg,.png,.jpeg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <label >
+                                User Name:
+                            </label> 
+                        </td>
+                        <td>  
+                            <input id="username" type="text" name="username" value="{{form.instance.user.username}}" required>
+                            {% if form.first_name.errors %}
+                                {{form.username.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <label for="first_name">
+                                First name:
+                            </label> 
+                        </td>
+                        <td> 
+                            <input id="first_name" type="text" name="first_name" value="{{form.instance.user.first_name}}" required>
+                            {% if form.first_name.errors %}
+                                {{form.first_name.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <label for="last_name">
+                                <font color="black">Last Name: </font>
+                            </label>
+                        </td>
+                        <td>  
+                            <input type="text" name="last_name" value="{{form.instance.user.last_name}}" required>
+                            {% if form.last_name.errors %}
+                                {{form.last_name.errors}}
+                            {% endif %}
+                        </td>
+        		    </tr>
+                    <tr>
+                       <td> 
+                        <label> 
+                            Mobile:
+                        </label>
+                        </td>
+                        <td>  
+                            <input type="tel" name="phone" value="{{form.instance.phone}}" required>
+                            {% if form.phone.errors %}
+                                {{form.phone.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>  
+                            <label>
+                                Email:
+                            </label>
+                        </td>
+                        <td>  
+                            <input type="email" name="email" value="{{form.instance.user.email}}" required>
+                            {% if form.email.errors %}
+                                {{form.email.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>
+        		    <tr>
+                        <td>
+                            <label>
+                                <b>
+                                    Gender:
+                                </b>
+                            </label>
+                        </td> 
+                        <td>
+                    		{% if form.instance.gender == "Male" %}
+                                <h4 class="col-sm-offset-1 col-sm-12"> Male 
+                                    <input class="col-sm-2" type="radio" name="gender" value="Male" checked>
+                                </h4>
+                                <h4 class="col-sm-offset-1 col-sm-12"> Female
+                                    <input class="col-sm-2" type="radio" name="gender" value="Female">
+                                </h4>
+                                <h4 class="col-sm-offset-1 col-sm-12"> Others 
+                                    <input class="col-sm-2" type="radio" name="gender" value="Restricted">
+                                </h4>
+                            {% elif form.instance.gender == "Female" %}
+                                <h4 class="col-sm-offset-1 col-sm-12"> Male 
+                                    <input class="col-sm-2" type="radio" name="gender" value="Male">
+                                </h4>
+                                <h4 class="col-sm-offset-1 col-sm-12"> Female
+                                    <input class="col-sm-2" type="radio" name="gender" value="Female" checked>
+                                </h4>
+                                <h4 class="col-sm-offset-1 col-sm-12"> Others 
+                                    <input class="col-sm-2" type="radio" name="gender" value="Restricted">
+                                </h4>
+                            {% else %}
+                                <h4 class="col-sm-offset-1 col-sm-12"> Male 
+                                    <input class="col-sm-2" type="radio" name="gender" value="Male">
+                                </h4>
+                                <h4 class="col-sm-offset-1 col-sm-12"> Female
+                                    <input class="col-sm-2" type="radio" name="gender" value="Female">
+                                </h4>
+                                <h4 class="col-sm-offset-1 col-sm-12"> Others 
+                                    <input class="col-sm-2" type="radio" name="gender" value="Restricted" checked>
+                                </h4>
+                            {% endif %}
+                    	</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Location:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="location" value="{{form.instance.location}}" required>
+                             {% if form.location.errors %}
+                               {{form.location.errors}}
+                            {% endif %}
+                        </td>
+                    </tr>     
+                    <tr class="options">
+                        <td colspan="2">
+                            <input type="submit" name="submit" value="Update" class="btn btn-primary">
+                        
+                            <a href="/edit_profile/{{pcuser.user.id}}" class="btn btn-warning">
+                               Reset
+                            </a>
+                        
+                            <a href="/profile/" class="btn btn-danger">
+                                Cancel
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </form> 
+        </div>
+     </div>
+</section>
+<br><br><br>
+{% endblock %}

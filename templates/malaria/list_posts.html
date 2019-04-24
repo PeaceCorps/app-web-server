@@ -1,0 +1,95 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h2 class="text-center col-sm-3 col-sm-offset-4">
+            Malaria : infoHub
+        </h2>
+
+        <br><br>
+    </div>
+
+    <div class="row">
+        <br>
+        {% if post_list %}
+            <div class=" col-sm-offset-1 col-sm-10">
+                <form action="" method="GET">
+                    <select name="category">
+                        <option value="" disabled selected>Order By</option>
+                        <option value="title_post">Title</option>
+                        <option value="owner">Author</option>
+                        <option value="created">Date Created</option>
+                        <option value="updated"> Date Updated </option>
+                    </select>
+                    <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+                    <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+                </form>
+                <a href="{% url 'malaria:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2 format">New Post</a>
+                <table class="table table-responsive well">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h3>Post</h3>
+                            </th>
+                            <th>
+                                <h3>Description</h3>
+                            </th>
+                            <th>
+                                <h3></h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in post_list %}
+                            <tr>
+                                <td>
+                                    <h5>
+                                        {{ post.title_post |truncatechars:20}}
+                                    </h5>
+                                </td>
+                                <td >
+                                    <h5>
+                                        {{ post.description_post|safe|truncatechars:40|linebreaks }}
+                                    </h5>
+                                </td>
+                                <td >
+                                    <h5>
+                                        {{ post.created.date }}
+                                    </h5>
+                                </td>
+                                <td >
+                                    <a href="{% url 'malaria:view_post' post.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <p>{% include "malaria/delete_post.html" %}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="well col-sm-8 col-sm-offset-2">
+                <a href="{% url 'malaria:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2">New Post</a>
+                <h3 class="text-center">No Posts</h3>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

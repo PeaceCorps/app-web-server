@@ -1,0 +1,73 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    Malaria Prevention Application Users
+</h2>
+<div class="row">
+    <br>
+    {% if malariausers_list %}
+        <div class=" col-sm-offset-2 col-sm-8">
+            <table class="table table-responsive well">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>Name</h3>
+                        </th>
+                        <th>
+                            <h3>Email</h3>
+                        </th>
+                        <th>
+                            <h3>Age</h3>
+                        </th>
+                        <th>
+                            <h3>Gender</h3>
+                        </th>
+                        <th>
+                            <h3>Medicine</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for malariausers in malariausers_list %}
+                        <tr>
+                            <td>
+                                <h5>
+                                    {{ malariausers.name }}
+                                </h5>
+                            </td>
+                            <td >
+                                <h5>
+                                    {{ malariausers.email}}
+                                </h5>
+                            </td>
+                            <td>
+                                <h5>
+                                    {{ malariausers.age }}
+                                </h5>
+                            </td>
+                            <td >
+                                <h5>
+                                    {{ malariausers.gender}}
+                                </h5>
+                            </td>
+                            <td >
+                                <h5>
+                                    {{ malariausers.medicineType}}
+                                </h5>
+                            </td>
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="well col-sm-offset-2 col-sm-8">
+            <h3 class="text-center">No App Users</h3>
+        </div>
+    {% endif %}
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

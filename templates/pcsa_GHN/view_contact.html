@@ -1,0 +1,54 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+{% with contact as c %}
+<h2 class="text-center">
+    FirstAide : infoHub
+</h2>
+<div class="well">
+    <h2 class="text-center ">View contact</h2>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Office Name:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                {{ contact.office_name }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Number:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                {{ contact.contact_number }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
+            <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-primary">Back to Contact list</a>
+            <a href="{% url 'pcsa_GHN:edit_contact' contact.id %}" class="btn btn-info">Edit</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <p>{% include "pcsa_GHN/delete_contact.html" %}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+{% endwith %}
+{% endblock %}

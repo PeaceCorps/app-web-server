@@ -1,0 +1,89 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+<h2 class="text-center">
+    Safety Tools : Post
+</h2>
+<div class="container">
+    <form action="" method="GET" class="col-sm-offset-1">
+        <select name="category">
+            <option value="" disabled selected>Order By</option>
+            <option value="title">Title</option>
+            <option value="created_date">Date Created</option>
+        </select>
+        <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+        <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+    </form>
+    {% for category in categories %}
+        {% if category %}
+            <div class="row">
+                <div class=" col-sm-offset-1 col-sm-10">
+                    <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2 format">New Post</a>
+                    <table class="table table-responsive well">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <h3>Post</h3>
+                                </th>
+                                <th>
+                                    <h3>Description</h3>
+                                </th>
+                                <th>
+                                    <h3></h3>
+                                </th>
+                                <th>
+                                    <h3>Action</h3>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for safetytoolspost in category %}
+                                <tr>
+                                    <td>
+                                        <h5>
+                                            {{ safetytoolspost.title|linebreaks }}
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            {{ safetytoolspost.description|safe|truncatechars:50|linebreaks }}
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            {{ safetytoolspost.created_date.date }}
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'pcsa_safety_tools:view_post' safetytoolspost.id %}" class="btn btn-primary">View</a>
+                                        <a href="{% url 'pcsa_safety_tools:edit_post' safetytoolspost.id %}" class="btn btn-info">Edit</a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{safetytoolspost.id}}">Delete</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal{{safetytoolspost.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <p>{% include "pcsa_safety_tools/delete_post.html" %}</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="well">
+                    <a href="{% url 'pcsa_safety_tools:create_post' %}" class="btn btn-success col-sm-offset-9 col-sm-3">New Post</a>
+                    <h3 class="text-center ">No Posts</h3>
+                </div>
+                <br>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

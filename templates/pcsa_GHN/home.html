@@ -1,0 +1,156 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    Get Help Now : Posts
+</h2>
+<div class="container">
+    <div class="row">
+        <br>
+        {% if object_list %}
+            <div class=" col-sm-offset-1 col-sm-10">
+                <form action="" method="GET">
+                    <select name="category">
+                        <option value="" disabled selected>Order By</option>
+                        <option value="title">Title</option>
+                        <option value="owner">Author</option>
+                        <option value="created_date">Date Created</option>
+                    </select>
+                    <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+                    <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+                </form>
+                <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-success col-sm-offset-10 col-sm-2 format">New Post</a>
+                <table class="table table-responsive well">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h3>Post</h3>
+                            </th>
+                            <th>
+                                <h3>Description</h3>
+                            </th>
+                            <th>
+                                <h3></h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ghnpost in object_list %}
+                            <tr>
+                                <td>
+                                    <h5>
+                                        {{ ghnpost.title|truncatechars:20 }}
+                                    </h5>
+                                </td>
+        			            <td>
+                                    <h5>
+            				            {{ ghnpost.description|safe|truncatechars:50|linebreaks }}
+            			            </h5>
+                                </td>
+                                <td>
+                                    <h5>
+                                        {{ ghnpost.created_date.date }}
+                                    </h5>
+                                </td>
+                                <td>
+                                    <a href="{% url 'pcsa_GHN:view_post' ghnpost.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'pcsa_GHN:edit_post' ghnpost.id %}" class="btn btn-info">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <p>{% include "pcsa_GHN/delete_post.html" %}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="well">
+                <a href="{% url 'pcsa_GHN:create_post' %}" class="btn btn-success pull-right">New Post</a>
+                <h3 class="text-center ">No Posts</h3>
+            </div>
+        {% endif %}
+    </div>
+
+    <h2 class="text-center">
+        Get Help Now : Contacts
+    </h2>
+    <div class="row">
+        <br>
+        {% if contact_list %}
+            <div class=" col-sm-offset-1 col-sm-10">
+               <form action="" method="GET">
+                    <select name="category_contact">
+                        <option value="" disabled selected>Order By</option>
+                        <option value="office_name">Office Name</option>
+                        <option value="contact_number">Contact Number</option>
+                    </select>
+                    <button class="glyphicon glyphicon-sort-by-attributes" name="asc" value="asc" type="submit"></button>
+                    <button class="glyphicon glyphicon-sort-by-attributes-alt" name="desc" value="desc" type="submit"></button>
+                </form>
+                <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-success col-sm-offset-10 col-sm-2 format" >New Contact</a>
+                <table class="table table-responsive well">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h3>Office</h3>
+                            </th>
+                            <th>
+                                <h3>Contact Number</h3>
+                            </th>
+                            <th>
+                                <h3>Action</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in contact_list %}
+                            <tr>
+                                <td>
+                                    <h5>{{ c.office_name }}</h5>
+                                </td>
+                                <td>
+                                    <h5>{{ c.contact_number }} </h5>
+                                </td>
+                                <td>
+            			            <a href="{% url 'pcsa_GHN:view_contact' c.id %}" class="btn btn-primary">View</a>
+                                    <a href="{% url 'pcsa_GHN:edit_contact' c.id %}" class="btn btn-info">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#mycontactModal">Delete</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="mycontactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <p>{% include "pcsa_GHN/delete_contact.html" %}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+             <div class="well">
+                <a href="{% url 'pcsa_GHN:create_contact' %}" class="btn btn-success col-sm-offset-9 col-sm-3">Add Contact</a>
+                <h3 class="text-center ">No Contacts</h3>
+             </div>
+        {% endif %}
+        <br>
+    </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock %}

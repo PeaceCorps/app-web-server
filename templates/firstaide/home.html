@@ -1,0 +1,72 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+<br><br>
+<center>
+    <h2>
+        <font color="#2c0f00"> FirstAide APIs : Posts</font>
+    </h2>
+</center>
+{% if post_list %}
+        <div class="well">
+            <center>
+                <h2>
+                    <font color="#2c0f00">   </font>
+                </h2>
+            </center>
+            <a href="{% url 'firstaide:first_aide_api_create' %}" class="btn btn-success pull-right">New Post</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3 class="inverted-font">Post ID</h3>
+                        </th>
+                        <th>
+                            <h3 class="inverted-font">Page Type</h3>
+                        </th>
+                        <th>
+                            <h3 class="inverted-font">Content</h3>
+                        </th>
+                        <th>
+                            <h3 class="inverted-font">Action</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in post_list %}
+                        <tr>
+                            <td>
+                                <h4 class="inverted-font">
+                                    {{ post.post_id|linebreaks }}
+                                </h4>
+                            </td>
+                            <td>
+                                <h4 class="inverted-font">
+                                    {{ post.page_type|linebreaks }}
+                                </h4>
+                            </td>
+                            <td>
+                                <h4 class="inverted-font">
+                                    {{ post.card_content|linebreaks }}
+                                </h4>
+                            </td>
+                            <td>
+                                <a href="{% url 'firstaide:first_aide_api_view_post' post.id %}" class="btn btn-primary">View</a>
+                                <a href="{% url 'firstaide:first_aide_api_edit_post' post.id %}" class="btn btn-info">Edit</a>
+                                <a href="{% url 'firstaide:first_aide_api_delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+    {% else %}
+        <div class="well">
+            <a href="{% url 'firstaide:first_aide_api_create' %}" class="btn btn-success pull-right">New Post</a>
+            <h3 class="text-center inverted-font">No Posts</h3>
+        </div>
+        <br>
+    {% endif %}
+<br><br>
+{% endblock %}

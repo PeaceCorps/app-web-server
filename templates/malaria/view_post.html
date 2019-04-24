@@ -1,0 +1,168 @@
+{% load static %}
+{% include "infohub/index.html" %}
+
+<link href="{% static "css/modal.css" %}" rel="stylesheet">
+
+{% block content %}
+
+<h2 class="text-center">
+    Malaria : infoHub
+</h2>
+<div class="well">
+    <h2 class="text-center">View Post</h2>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Title:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                {{ post.title_post }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Description:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                {{ post.description_post|safe|linebreaksbr }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Date Created:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                {{ post.created }}
+            </h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 ><strong>Link:</strong></h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                <a href="{{ post.link_post|linebreaksbr }}" target="_blank" ><font color="#0645AD">{{ post.link_post|linebreaksbr }}</font></a>
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 ><strong>Image:</strong></h4>
+        </div>
+        <div class="col-sm-8">
+            <h4 >
+                <img src="/static/{{post.photo}}" alt="my_img" >
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
+            <a href="{% url 'malaria:list_posts' %}" class="btn btn-primary">Back to Post List</a>
+            <a href="{% url 'malaria:edit_post' post.id %}" class="btn btn-info">Edit</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <p>{% include "malaria/delete_post.html" %}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="well">
+    <h2 class="text-center">Revision History</h2>
+        <div class="row">
+            <br>
+                <div class="col-sm-1">
+                    <h4 >
+                        <strong>Author</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Date Updated</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Title</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-3">
+                    <h4 >
+                        <strong>Description</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Link</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Image</strong>
+                    </h4>
+                </div>
+            </div>
+            {% for revpost in revpost_list %}
+                <div class="row">
+                    <div class="col-sm-1">
+                        <h5>
+                            {% if revpost.owner_rev.user.first_name or revpost.owner_rev.user.last_name %}
+                                {{ revpost.owner_rev.user.first_name }} {{ revpost.owner_rev.user.last_name }}
+                            {% else %}
+                                {{ revpost.owner_rev.user.username }}
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>
+                            {{ revpost.created }}
+                        </h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>
+                            {{ revpost.title_post_rev }}
+                        </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>
+                            {{ revpost.description_post_rev|safe|linebreaksbr }}
+                        </h5>
+                    </div>
+                     <div class="col-sm-2">
+                        <a href="{{ revpost.link_rev }}">
+                            {{ revpost.link_rev|truncatechars:20|linebreaksbr }}
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/static/{{ revpost.photo_rev }}">
+                            {{ revpost.photo_rev|truncatechars:20|linebreaksbr }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static "js/modal.js" %}"></script>
+
+<br><br><br>
+{% endblock %}

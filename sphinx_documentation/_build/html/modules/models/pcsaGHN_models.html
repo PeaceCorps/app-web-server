@@ -1,0 +1,247 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PCSA Get Help Now Models &#8212; MACC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pcsa-get-help-now-models">
+<h1>PCSA Get Help Now Models<a class="headerlink" href="#pcsa-get-help-now-models" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pcsa_GHN.models"></span><dl class="class">
+<dt id="pcsa_GHN.models.Contact">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.models.</code><code class="descname">Contact</code><span class="sig-paren">(</span><em>id</em>, <em>office_name</em>, <em>contact_number</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.Contact" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="pcsa_GHN.models.Contact.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#pcsa_GHN.models.Contact.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="pcsa_GHN.models.Contact.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#pcsa_GHN.models.Contact.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.Contact.contact_number">
+<code class="descname">contact_number</code><a class="headerlink" href="#pcsa_GHN.models.Contact.contact_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.Contact.id">
+<code class="descname">id</code><a class="headerlink" href="#pcsa_GHN.models.Contact.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.Contact.objects">
+<code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#pcsa_GHN.models.Contact.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.Contact.office_name">
+<code class="descname">office_name</code><a class="headerlink" href="#pcsa_GHN.models.Contact.office_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa_GHN.models.ghnPost">
+<em class="property">class </em><code class="descclassname">pcsa_GHN.models.</code><code class="descname">ghnPost</code><span class="sig-paren">(</span><em>id</em>, <em>owner</em>, <em>title</em>, <em>description</em>, <em>created_date</em>, <em>link</em>, <em>photo</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="pcsa_GHN.models.ghnPost.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="pcsa_GHN.models.ghnPost.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.created_date">
+<code class="descname">created_date</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.created_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.description">
+<code class="descname">description</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.fs">
+<code class="descname">fs</code><em class="property"> = &lt;django.core.files.storage.FileSystemStorage object&gt;</em><a class="headerlink" href="#pcsa_GHN.models.ghnPost.fs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.models.ghnPost.get_absolute_url">
+<code class="descname">get_absolute_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.models.ghnPost.get_next_by_created_date">
+<code class="descname">get_next_by_created_date</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.get_next_by_created_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.models.ghnPost.get_previous_by_created_date">
+<code class="descname">get_previous_by_created_date</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.get_previous_by_created_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.id">
+<code class="descname">id</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.link">
+<code class="descname">link</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.link" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcsa_GHN.models.ghnPost.model_name">
+<code class="descname">model_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcsa_GHN.models.ghnPost.model_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.objects">
+<code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#pcsa_GHN.models.ghnPost.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.owner">
+<code class="descname">owner</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">child.parent</span></code> is a <code class="docutils literal"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.owner_id">
+<code class="descname">owner_id</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.owner_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.photo">
+<code class="descname">photo</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.photo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa_GHN.models.ghnPost.title">
+<code class="descname">title</code><a class="headerlink" href="#pcsa_GHN.models.ghnPost.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MACC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, yatna.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/modules/models/pcsaGHN_models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

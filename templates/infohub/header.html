@@ -1,0 +1,43 @@
+{% load static %}
+{% load assign %}
+<nav class="navbar navbar-default" id="nav_default">
+	<div class="container container-fluid">
+		<div class="navbar-header col-sm-5">
+		    <a class="navbar-brand" href="/">
+				<img src="{% static "images/logo.png" %}" class="img-responsive">
+			</a>
+			<a class="name" href="/">
+				<h1><b> Mobile App Control Center</b></h1>
+			</a>
+		</div>
+		{% if pcuser.is_authenticated or user.is_authenticated %} 
+			{% if pcuser %}
+				{% assign my_var pcuser.user %}
+			{% else %}
+				{% assign my_var user %}
+			{% endif %}
+			<div class="navbar-collapse" id="toggler">
+				<ul class="nav navbar-nav navbar-right text-uppercase">
+					{% if my_var.first_name %}
+						<li>
+							<a class= "btn" href="/profile/">  
+								<h4>  {{ my_var.first_name }} </h4>
+							</a>
+						</li>
+					{% else %}
+						<li>
+							<a href="/profile/">  
+								<h4>  User </h4>
+							</a>
+						</li>
+					{% endif %}
+					<li>
+						<a class="btn logout" href="{% url 'account_logout' %}">
+							<h4>Logout</h4>
+						</a>
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+	</div>
+</nav>

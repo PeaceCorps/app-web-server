@@ -1,0 +1,68 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+<br><br><br>
+<center>
+    <h2>
+        <font color="#2c0f00"> FirstAide APIs: Posts</font>
+    </h2>
+</center>
+<div class="well">
+    <h2 class="text-center inverted-font">View Card</h2>
+
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font">
+                <strong>Post Id:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ firstaideapi.post_id }}
+            </h4>
+        </div>
+    </div><div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font">
+                <strong>Page Type:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-2">
+            <h4 class="inverted-font">
+                {{ firstaideapi.page_type }}
+            </h4>
+        </div>
+    </div><div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font">
+                <strong>Title:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ firstaideapi.title }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-2">
+            <h4 class="inverted-font">
+                <strong>Card Content:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 class="inverted-font">
+                {{ firstaideapi.card_content|linebreaksbr }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <a href="{% url 'firstaide:first_aide_api_home' %}" class="btn btn-primary">Back to Post List</a>
+
+        </div>
+    </div>
+</div>
+<br><br><br>
+{% endblock %}

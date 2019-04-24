@@ -4,19 +4,43 @@
 This tutorial assumes that the user is installing and running the project under the Ubuntu Virtual Machine that is provided by PeaceCorps.
 
 ## Table of Contents
-1. [Install git](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-git)
-2. [Clone Project](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#clone-project)
-3. [Install Django and PostgreSQL](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-django-and-postgresql)
-4. [Install VirtualBox and Vagrant](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-virtualbox-and-vagrant)
-5. [Download PeaceCorps Ubuntu Virtual Machine](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#download-peacecorps-ubuntu-virtual-machine)
-6. [Using Vagrant](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#using-vagrant)
-7. [Install Project Dependencies](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#install-project-dependencies)
-8. [Setup PostgreSQL](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#setup-postgresql)
-9. [Update settings.py](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#update-settingspy)
-10. [Generate Database Tables Corresponding to Django Models](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#generate-database-tables-corresponding-to-django-models)
-11. [Run Development Server](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#run-development-server)
-12. [Try out Mobile App Control Center](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#try-out-mobile-app-control-center)
-13. [Exit the Virtual Machine](https://github.com/Nerdylicious/app-web-server/blob/master/docs/Installation%20Guide.md#exit-the-virtual-machine)
+1. [Install Python3.6](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-python3.6)
+2. [Install git](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-git)
+3. [Clone Project](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#clone-project)
+4. [Install Django and PostgreSQL](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-django-and-postgresql)
+5. [Install VirtualBox and Vagrant](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-virtualbox-and-vagrant)
+6. [Download PeaceCorps Ubuntu Virtual Machine](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#download-peacecorps-ubuntu-virtual-machine)
+7. [Using Vagrant](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#using-vagrant)
+8. [Install Project Dependencies](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#install-project-dependencies)
+9. [Setup PostgreSQL](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#setup-postgresql)
+10. [Update settings.py](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#update-settingspy)
+11. [Generate Database Tables Corresponding to Django Models](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#generate-database-tables-corresponding-to-django-models)
+12. [Run Development Server](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#run-development-server)
+13. [Try out Mobile App Control Center](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#try-out-mobile-app-control-center)
+14. [Exit the Virtual Machine](https://github.com/systers/macc/blob/develop/docs/Installation%20Guide.md#exit-the-virtual-machine)
+
+## Install Python3.6
+
+By default, your PC has Python 2.7 installed. To install Python 3.6, follow the steps below:
+
+To install some build dependencies:
+
+    sudo apt install build-essential checkinstall
+    sudo apt install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+
+Then, download Python 3.6 source code from python.org by the following command:
+    
+    wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
+
+Next, we extract the tarball:
+
+   tar xvf Python-3.6.0.tar.xz
+
+Now change directory into the source directory, configure the build environment and install:
+
+    cd Python-3.6.0/
+    ./configure
+    sudo make install
 
 ## Install git
 
@@ -28,18 +52,21 @@ Clone the project from GitHub by running the following command:
 
     git clone project_url_here
 
-For my project, this would correspond to:
+For our project, this would correspond to:
 
-    git clone git@github.com:Nerdylicious/app-web-server.git
+    git clone https://github.com/systers/macc.git
 
 ## Install Django and PostgreSQL
 
 If you are installing and running the project on your local machine and not on the PeaceCorps VM, then you will need to download and install the following software:
 
-1. [Django](https://www.djangoproject.com/download/) (version >= 1.6.5)
-2. [PostgreSQL](http://www.postgresql.org/download/) (version >= 9.3.4)
+1. [Django](https://www.djangoproject.com/download/) (version == 1.11)
+2. [PostgreSQL](http://www.postgresql.org/download/) (version >= 9.5.5, version 9.6 preferred)
 
-**Skip this step if you are installing and running the project on the PeaceCorps VM, as Django and PostgreSQL are already included in the PeaceCorps VM.**
+Skip the next two sections if not using the PeaceCorps VM and jump to the section '**Install Project Dependencies**'. 
+
+
+**Skip this section if you are installing and running the project on the PeaceCorps VM, as Django and PostgreSQL are already included in the PeaceCorps VM.**
 
 ## Install VirtualBox and Vagrant
 
@@ -54,7 +81,7 @@ Install VirtualBox and Vagrant by running the installers.
 
 ## Download PeaceCorps Ubuntu Virtual Machine
 
-A Vagrant file is located in the top level directory for the project (at [https://github.com/Nerdylicious/app-web-server/blob/master/Vagrantfile](https://github.com/Nerdylicious/app-web-server/blob/master/Vagrantfile) found on GitHub. In case you do not have a copy of this Vagrant file, here are it's contents:
+A Vagrant file is located in the [top level directory for the project.](https://github.com/systers/macc/blob/develop/Vagrantfile) found on GitHub. In case you do not have a copy of this Vagrant file, here are it's contents:
 ```
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -118,27 +145,56 @@ On the VM, update and upgrade:
 
 Install project dependencies:
 
-    sudo apt-get install python-dev
-    sudo apt-get install python-psycopg2
+    sudo apt-get install python3-dev
+    sudo apt-get install python3-psycopg2
     sudo apt-get install libpq-dev
-    sudo apt-get install python-pip
+    sudo apt-get install python3-pip
+    
+Install Python's Virtual Environment (**Only for users not using Peacecorp's VM**)
 
-Install all Python dependencies specified in the [requirements.txt](https://github.com/Nerdylicious/app-web-server/blob/master/requirements.txt) file using pip:
+    sudo pip3 install virtualenv
+    
+Create Python's Virtual Environment (**Only for users not using Peacecorp's VM**), by moving to the top level directory of the project containing **manage.py** and create your virtual environment, type :
 
-    sudo pip install Django==1.6.5
-    sudo pip install Jinja2==2.7.3
-    sudo pip install MarkupSafe==0.23
-    sudo pip install Pillow==2.5.1
-    sudo pip install dj-database-url==0.3.0
-    sudo pip install dj-static==0.0.6
-    sudo pip install django-toolbelt==0.0.1
-    sudo pip install djangorestframework==2.3.14
-    sudo pip install gunicorn==19.1.0
-    sudo pip install psycopg2==2.5.3
-    sudo pip install static3==0.5.1
-    sudo pip install django-rest-swagger==0.3.2
-    sudo pip install PyYAML==3.11
+    virtualenv venv
+    
+Activate Python's Virtual Environment (**Only for users not using Peacecorp's VM**)
 
+    source venv/bin/activate
+    
+Now, your prompt will change to indicate that you are now operating within the virtual environment. It will look something like this (venv)user@host:~/myproject$.
+
+**From here on the process is same whether using Peacecorp's VM or not**
+
+Install all Python dependencies specified in the [requirements.txt](https://github.com/systers/app-web-server/blob/develop/requirements.txt) file using pip:
+    
+    sudo pip3 install -r requirements.txt
+    
+Or install one by one
+
+    sudo pip3 install Django==1.11
+    sudo pip3 install Jinja2==2.9.6
+    sudo pip3 install MarkupSafe==1.0
+    sudo pip3 install Pillow==4.1.1
+    sudo pip3 install dj-database-url==0.4.2
+    sudo pip3 install dj-static==0.0.6
+    sudo pip3 install django-toolbelt==0.0.1
+    sudo pip3 install djangorestframework==3.6.3
+    sudo pip3 install gunicorn==19.7.1
+    sudo pip3 install psycopg2==2.7.1
+    sudo pip3 install static3==0.7.0
+    sudo pip3 install django-rest-swagger==2.1.2
+    sudo pip3 install PyYAML==3.12
+
+**Configure autoenv**
+
+    sudo pip3 install autoenv
+    echo "source `which activate.sh`" >> ~/.bashrc
+	
+Changing Directory to the cloned directory will automatically resolve export settings error
+
+    cd macc (cloned directory)
+    
 ## Setup PostgreSQL
 
 We will now setup PostgreSQL by first running the postgres client as root:
@@ -223,28 +279,32 @@ EMAIL_HOST_USER = 'pc.mobile.control.center.com'
 EMAIL_HOST_PASSWORD = 'alphadeltaepsilon'
 EMAIL_PORT = 465
 ```
-Comment out the following lines like so:
+The following lines need to be commented or kept as such if already commented:
 ```
 #import dj_database_url
-#DATABASES['default'] =  dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 ```
 
 ## Generate Database Tables Corresponding to Django Models
 
 Change directory to where you can find the **manage.py** file (this is located in the top level directory for the project). If you are installing the project on the VM, the project will be located within the **/vagrant** directory.
 
-To view the sql commands that will be generated from `syncdb`, run the command:
+To view the sql commands that will be generated from `migrate`, run the command:
 
-    python manage.py sqlall app_name_here
+    python3 manage.py sqlmigrate app_name_here migration_name
+
+For example, 
+    
+    python3 manage.py sqlmigrate malaria_web 0001_initial
 
 To generate the database tables that correspond to the Django models, run the command:
 
-    python manage.py syncdb
+    python3 manage.py makemigrations malaria_web malaria_api webhub signup profiles pcsa pcsa_GHN pcsa_safety_tools social_django
+    python3 manage.py migrate
 
-After running the `syncdb` command, you should get the following prompt. Type in `yes`:
+After running the `migrate` command, you should run the following command to create a superuser:
 
-    You just installed Djano's auth system, which means you don't have any superusers defined.
-    Would you like to create one now? (yes/no): yes
+    python3 manage.py createsuperuser
 
 Create a superuser with the following credentials (for now):
 ```
@@ -252,6 +312,13 @@ Username: admin
 Email: your email
 Password: mypassword
 ```
+
+If the models are updated in any way, you need to delete the database and then migrating the fields once more. This can be done by:
+
+    python3 manage.py flush
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+
 Check that the tables were created by starting the postgres client and viewing the tables using the `\dt` command.
 ```
 psql -U myuser -d webapp -h localhost -W
@@ -269,18 +336,18 @@ Change directory to where you can find the **manage.py** file (this is located i
 
 Start the development server by running the command (this runs the development server on the VM):
 
-    python manage.py runserver [::]:8000
+    python3 manage.py runserver [::]:8000
 
 
 ## Try out Mobile App Control Center
 
-You can now try out the project by going to [http://localhost:8001](http://localhost:8001) on a browser on your local machine.
+You can now try out the project by going to [http://localhost:8000](http://localhost:8000) on a browser on your local machine.
 
 Try logging in with your superuser credentials. After clicking on `Submit` you will get the following message:
 
     No Pcuser associated! Add a pcuser from admin
 
-We need to create a pcuser that is associated with the superuser we created previously. To do this, go to the Django admin panel at [http://localhost:8001/admin](http://localhost:8001/admin) on your browser.
+We need to create a pcuser that is associated with the superuser we created previously. To do this, go to the Django admin panel at [http://localhost:8000/admin](http://localhost:8000/admin) on your browser.
 
 On the Django admin login page, login with your superuser credentials.
 
@@ -293,12 +360,11 @@ Location: Your location
 Phone: Your phone number
 Gender: Your gender
 Reset pass: 1 (not sure what this field does)
-Imageobj: Pick any random image from your computer
 Verified: 1 (not sure what this field does)
 ```
 Click on `Save` and logout.
 
-Go back to [http://localhost:8001](http://localhost:8001)
+Go back to [http://localhost:8000](http://localhost:8000)
 
 Login again with your superuser credentials, it should work since we have associated our superuser with a pcuser. You are now free to try out the application.
 

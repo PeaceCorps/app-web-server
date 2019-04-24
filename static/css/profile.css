@@ -1,0 +1,106 @@
+.content{
+	text-align: center;
+	width: 500px;
+	margin: 0 auto;
+	border-radius: 6px;
+	background-color: #e8eaf6;
+	color: #000;
+	padding: 18px 0;
+	margin-bottom: 100px;
+}
+
+.box{
+	width: 400px;
+}
+
+.content h3{
+	font-size: 30px;
+	padding: 20px;
+	border-bottom: 1px solid #aaa;
+	width: 310px;
+	margin: 0 auto 30px auto;
+	font-weight: bold;
+}
+
+.content img{
+	clear: both;
+	margin-bottom: 30px;
+}
+
+.content ol{
+	text-align: left;
+	margin-left: 40px;
+    margin-bottom: 0px;
+    list-style: none;
+}
+
+.content li{
+	padding: 0 10px;
+	line-height: 35px;
+}
+
+.content span{
+  	width:150px;
+}
+
+.image h4{
+	width: 200px;
+	margin: 0 auto;
+	height: 70px;
+	
+	line-height: 70px;
+	border-radius: 6px;
+	
+	color: #fff;
+}
+
+@media only screen and (min-width: 950px){
+	.content{
+		width: 580px;
+	}
+
+	.content .image{
+		float: right;
+		width: 150px;
+		height: 250px;
+		margin: 10px 50px 0 0;
+	}
+
+	.content img{
+		margin: 0;
+		width: 120px;
+		height: 120px;
+	}
+
+	.content ul{
+		width: 350px;
+		list-style-type: none;
+		float: left;
+		padding-left: 30px;
+	}
+
+	.content li{
+	
+	}
+
+	.content .options{
+		clear: both;
+	}
+
+	.content .btn{
+		display: inline-block;
+		margin-top: 15px;
+	}
+
+	.image h4{
+		width: 125px;
+		line-height: 30px;
+	}
+}
+
+.myClass
+{
+	margin-right: 30px; 
+	margin-left: 80px;
+}
+

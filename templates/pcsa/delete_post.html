@@ -1,0 +1,25 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    FirstAide: infoHub
+</h2>
+<div class="well">
+    <h2 class="text-center">Delete Post</h2>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-offset-2 ">Are you sure you want to delete this Post?</label>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2">
+                <button type="submit" class="btn btn-danger">Yes, delete this Post</button>
+                <a href="{% url 'pcsa:list_posts' %}" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br>
+{% endblock %}

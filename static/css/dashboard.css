@@ -1,0 +1,87 @@
+.navbar-default {
+    background-color: #e2d7bb;
+    height: 110px;
+}
+
+.container .row h1{
+	text-align: center;
+}
+
+.box{
+	padding: 30px;
+	padding-bottom: 0px;
+	overflow: contain;
+	display: inline-block;
+	border-radius: 6px;
+}
+
+.box img{
+	margin: 0px 20px;
+	height: 150px;
+	border-width: 0;
+}
+
+
+.box h3{
+	text-align: center;
+	margin: 10px 0;
+	font-size: 25px;
+}
+
+.btn{
+	clear: both;
+	font: 16px/30px arial, verdana;
+	text-align: center;
+	margin-bottom: 20px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.options .btn{
+	padding:2px;
+	border: none;
+}
+
+.box .btn{
+	padding: 2px 10px;
+	border: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	cursor: pointer;
+	color: #c2002f;
+}
+
+.box h3 a:hover{
+	color: #c2002f;
+	text-decoration: none;
+}
+
+.row p{
+	text-align: center;
+	clear: both;
+	visibility: hidden;
+}
+
+h2{
+	font-size: 26px;
+}
+
+.btn-danger {
+	background-color: #c2002f;
+}
+
+@media only screen and (min-width: 950px){
+	label{
+		display: none;
+	}
+	.box{
+		
+		margin: 0 30px;
+		background-color: #e8eaf6;
+	}
+}

@@ -1,0 +1,29 @@
+{% load static %}
+{% include "infohub/index.html" %}
+
+<script src="https://use.fontawesome.com/a92a526874.js"></script>
+<link href="{% static "css/bootstrap-social.css" %}" rel="stylesheet">
+
+{% block content %}
+    {% if user and not user.is_anonymous %}
+        <form action="/login_social/" method="POST" id="myprofile">
+            {% csrf_token %}
+            <input type="hidden" name="uname" value="{{user.username}}">
+            <input type="hidden" name="fname" value="{{user.first_name}}">
+            <input type="hidden" name="lname" value="{{user.last_name}}">
+            <input type="hidden" name="email" value="{{user.email}}">
+            {% csrf_token %}
+            <script type="text/javascript">
+                document.getElementById('myprofile').submit();
+            </script>
+        </form> 
+        <p><a href="/logout_do/">Logout</a>
+    {% else %}
+        <center>
+        	<br><br><br><br><br><br><br><br>
+        	<a href="{% url 'social:begin' 'twitter' %}?next={{request.path }}" class="btn btn-social btn-twitter"><span class="fa fa-twitter"></span>Login with Twitter</a>
+            <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-social btn-google">  <span class="fa fa-google"></span>Login with Google</a>
+        </center>  
+    {% endif %}
+    <br><br><br>
+{% endblock %}

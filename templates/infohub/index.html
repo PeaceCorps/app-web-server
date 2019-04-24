@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{% static "css/style.css" %}" rel="stylesheet">
+		<link href="{% static "css/profile.css" %}" rel="stylesheet">
+		<link href="{% static "css/sticky-footer.css" %}" rel="stylesheet">
+        <link href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/format.css" %}" rel="stylesheet">
+		<link rel="shortcut icon" href="{% static "images/peacecorps_favicon.png" %}" type="image/x-icon" />
+		
+  		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+	</head>
+
+	<body>
+		<div class ="container-fluid">
+			<div class= "row">
+				{% include 'infohub/header.html' %}
+			</div>
+			<div class= "row">
+				{% block body %}
+				{% endblock %}
+			</div>
+			<div class= "row">
+				{% include 'infohub/footer.html' %}
+			</div>
+		</div>
+	</body>
+</html>

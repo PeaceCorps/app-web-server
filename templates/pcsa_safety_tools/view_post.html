@@ -1,0 +1,118 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+<h2 class="text-center">
+    FirstAide : infoHub
+</h2>
+<div class="well">
+    <h2 class="text-center ">View Post</h2>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Category ID:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 >
+                {{ safetytoolspost.category_id.category_id }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Title:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 >
+                {{ safetytoolspost.title }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Description:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 >
+                {{ safetytoolspost.description|safe|linebreaksbr }}
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-1">
+            <h4 >
+                <strong>Date Created:</strong>
+            </h4>
+        </div>
+        <div class="col-sm-7">
+            <h4 >
+                {{ safetytoolspost.created_date }}
+            </h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
+            <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-primary">Back to Post List</a>
+            <a href="{% url 'pcsa_safety_tools:edit_post' safetytoolspost.id %}" class="btn btn-info">Edit</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <p>{% include "pcsa_safety_tools/delete_post.html" %}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="well">
+    <h2 class="text-center">Revision History</h2>
+        <div class="row">
+            <br>
+                <div class="col-sm-3 col-sm-offset-1">
+                    <h4 >
+                        <strong>Date Updated</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4 >
+                        <strong>Title</strong>
+                    </h4>
+                </div>
+                <div class="col-sm-5">
+                    <h4 >
+                        <strong>Description</strong>
+                    </h4>
+                </div>
+            </div>
+            {% for revpost in revpost_list %}
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <h5>
+                            {{ revpost.created }}
+                        </h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>
+                            {{ revpost.title_post_rev }}
+                        </h5>
+                    </div>
+                    <div class="col-sm-5">
+                        <h5>
+                            {{ revpost.description_post_rev|safe|linebreaksbr }}
+                        </h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

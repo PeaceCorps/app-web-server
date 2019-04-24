@@ -1,0 +1,51 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    Get Help Now
+</h2>
+<div class="well">
+    <h2 class="text-center">Edit Contact</h2>
+    <form class="form-horizontal" autocomplete="off" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Office address <span class="text-danger" >*</span></label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="office_name" value="{% if form.office_name.value %}{{ form.office_name.value }}{% endif %}">
+                <p class="help-block ">
+                    <strong>
+                        {% if form.office_name.errors %}
+                            {% for error in form.office_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Phone Number <span class="text-danger" >*</span></label>
+            <div class="col-sm-8">
+                <input class="form-control" type="phone" name="contact_number" value="{% if form.contact_number.value %}{{ form.contact_number.value }}{% endif %}" >
+                <p class="help-block ">
+                    <strong>
+                        {% if form.contact_number.errors %}
+                            {% for error in form.contact_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'pcsa_GHN:home' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+<br><br><br>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% include "infohub/index.html" %}
+
+{% block content %}
+
+<h2 class="text-center">
+    FirstAide : infoHub
+</h2>
+<br>
+<div style="margin-left:15%">
+	<br><br><br><br><br>
+	<div class="col-sm-4">
+	
+	<a href="{% url 'pcsa_GHN:home' %}" class="well">Get Help Now</a>
+    
+    </div>
+    <div class="col-sm-4">
+    
+    <a href="{% url 'pcsa_safety_tools:home' %}" class="well">Safety Tools</a>
+    </div>
+    <div class="col-sm-4">
+    
+    <a href="{% url 'firstaide:first_aide_api_home' %}" class="well">First Aide APIs</a>
+    </div>
+</div>
+{% endblock %}

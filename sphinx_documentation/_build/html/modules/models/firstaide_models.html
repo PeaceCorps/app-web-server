@@ -1,0 +1,299 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>First Aide API Models &#8212; MACC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="first-aide-api-models">
+<h1>First Aide API Models<a class="headerlink" href="#first-aide-api-models" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-firstaide.models"></span><dl class="class">
+<dt id="firstaide.models.FirstAideAPI">
+<em class="property">class </em><code class="descclassname">firstaide.models.</code><code class="descname">FirstAideAPI</code><span class="sig-paren">(</span><em>id</em>, <em>post_id</em>, <em>page_type</em>, <em>title</em>, <em>card_content</em><span class="sig-paren">)</span><a class="headerlink" href="#firstaide.models.FirstAideAPI" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.ADDED_SOON">
+<code class="descname">ADDED_SOON</code><em class="property"> = 'added-soon'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.ADDED_SOON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.BYSTANDER_INTERVENTION">
+<code class="descname">BYSTANDER_INTERVENTION</code><em class="property"> = 'bystander-intervention'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.BYSTANDER_INTERVENTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.COMMON_QUESTIONS">
+<code class="descname">COMMON_QUESTIONS</code><em class="property"> = 'common-questions'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.COMMON_QUESTIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.CONFIDENTIALITY">
+<code class="descname">CONFIDENTIALITY</code><em class="property"> = 'confidentiality'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.CONFIDENTIALITY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="firstaide.models.FirstAideAPI.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.FULL_PAGE_CARD">
+<code class="descname">FULL_PAGE_CARD</code><em class="property"> = 'full_page_card'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.FULL_PAGE_CARD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.FURTHER_RESOURCES">
+<code class="descname">FURTHER_RESOURCES</code><em class="property"> = 'further-resources'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.FURTHER_RESOURCES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.GLOSSARY">
+<code class="descname">GLOSSARY</code><em class="property"> = 'glossary'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.GLOSSARY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.HELP_A_FRIEND">
+<code class="descname">HELP_A_FRIEND</code><em class="property"> = 'help-a-friend'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.HELP_A_FRIEND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.IMPACT_OF_ASSAULT">
+<code class="descname">IMPACT_OF_ASSAULT</code><em class="property"> = 'impact-of-assault'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.IMPACT_OF_ASSAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.MULTI_CARDS_PAGE">
+<code class="descname">MULTI_CARDS_PAGE</code><em class="property"> = 'multi_cards_page'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.MULTI_CARDS_PAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.MULTI_SEGMENT_PAGE">
+<code class="descname">MULTI_SEGMENT_PAGE</code><em class="property"> = 'multi_segment_page'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.MULTI_SEGMENT_PAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.MULTI_SEGMENT_VERTICAL_PAGE">
+<code class="descname">MULTI_SEGMENT_VERTICAL_PAGE</code><em class="property"> = 'multi_segment_vertical_page'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.MULTI_SEGMENT_VERTICAL_PAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.MYTHBUSTERS">
+<code class="descname">MYTHBUSTERS</code><em class="property"> = 'mythbusters'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.MYTHBUSTERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="firstaide.models.FirstAideAPI.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.PEACE_CORPS_COMMITMENT">
+<code class="descname">PEACE_CORPS_COMMITMENT</code><em class="property"> = 'peace-corps-commitment'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.PEACE_CORPS_COMMITMENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.POLICY_SUMMARY">
+<code class="descname">POLICY_SUMMARY</code><em class="property"> = 'policy-summary'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.POLICY_SUMMARY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.POST_ID_CHOICES">
+<code class="descname">POST_ID_CHOICES</code><em class="property"> = (('added-soon', 'added-soon'), ('seeking-staff-support', 'seeking-staff-support'), ('services-after-assault', 'services-after-assault'), ('peace-corps-commitment', 'peace-corps-commitment'), ('confidentiality', 'confidentiality'), ('radar', 'radar'), ('sexual-predators', 'sexual-predators'), ('safety-plan-basics', 'safety-plan-basics'), ('unwanted-attention', 'unwanted-attention'), ('bystander-intervention', 'bystander-intervention'), ('common-questions', 'common-questions'), ('safety-plan-worksheet', 'safety-plan-worksheet'), ('sexual-assault', 'sexual-assault'), ('sexual-assault-more', 'sexual-assault-more'), ('glossary', 'glossary'), ('policy-summary', 'policy-summary'), ('further-resources', 'further-resources'), ('impact-of-assault', 'impact-of-assault'), ('help-a-friend', 'help-a-friend'), ('mythbusters', 'mythbusters'), ('sexual-harassment', 'sexual-harassment'))</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.POST_ID_CHOICES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.RADAR">
+<code class="descname">RADAR</code><em class="property"> = 'radar'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.RADAR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SAFETY_PLAN_BASICS">
+<code class="descname">SAFETY_PLAN_BASICS</code><em class="property"> = 'safety-plan-basics'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SAFETY_PLAN_BASICS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SAFETY_PLAN_WORKSHEET">
+<code class="descname">SAFETY_PLAN_WORKSHEET</code><em class="property"> = 'safety-plan-worksheet'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SAFETY_PLAN_WORKSHEET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SEEKING_STAFF_SUPPORT">
+<code class="descname">SEEKING_STAFF_SUPPORT</code><em class="property"> = 'seeking-staff-support'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SEEKING_STAFF_SUPPORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SERVICES_AFTER_ASSAULT">
+<code class="descname">SERVICES_AFTER_ASSAULT</code><em class="property"> = 'services-after-assault'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SERVICES_AFTER_ASSAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SEXUAL_ASSAULT">
+<code class="descname">SEXUAL_ASSAULT</code><em class="property"> = 'sexual-assault'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SEXUAL_ASSAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SEXUAL_ASSAULT_MORE">
+<code class="descname">SEXUAL_ASSAULT_MORE</code><em class="property"> = 'sexual-assault-more'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SEXUAL_ASSAULT_MORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SEXUAL_HARRASMENT">
+<code class="descname">SEXUAL_HARRASMENT</code><em class="property"> = 'sexual-harassment'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SEXUAL_HARRASMENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.SEXUAL_PREDATORS">
+<code class="descname">SEXUAL_PREDATORS</code><em class="property"> = 'sexual-predators'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.SEXUAL_PREDATORS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.TYPE_OF_PAGE_CATEGORY">
+<code class="descname">TYPE_OF_PAGE_CATEGORY</code><em class="property"> = (('full_page_card', 'full_page_card'), ('multi_cards_page', 'multi_cards_page'), ('multi_segment_page', 'multi_segment_page'), ('multi_segment_vertical_page', 'multi_segment_vertical_page'))</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.TYPE_OF_PAGE_CATEGORY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.UNWANTED_ATTENTION">
+<code class="descname">UNWANTED_ATTENTION</code><em class="property"> = 'unwanted-attention'</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.UNWANTED_ATTENTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.card_content">
+<code class="descname">card_content</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.card_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="firstaide.models.FirstAideAPI.get_page_type_display">
+<code class="descname">get_page_type_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#firstaide.models.FirstAideAPI.get_page_type_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="firstaide.models.FirstAideAPI.get_post_id_display">
+<code class="descname">get_post_id_display</code><span class="sig-paren">(</span><em>*moreargs</em>, <em>**morekwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#firstaide.models.FirstAideAPI.get_post_id_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.id">
+<code class="descname">id</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.objects">
+<code class="descname">objects</code><em class="property"> = &lt;django.db.models.manager.Manager object&gt;</em><a class="headerlink" href="#firstaide.models.FirstAideAPI.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.page_type">
+<code class="descname">page_type</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.page_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.post_id">
+<code class="descname">post_id</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.post_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="firstaide.models.FirstAideAPI.title">
+<code class="descname">title</code><a class="headerlink" href="#firstaide.models.FirstAideAPI.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MACC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, yatna.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/modules/models/firstaide_models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

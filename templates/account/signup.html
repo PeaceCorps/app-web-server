@@ -1,0 +1,40 @@
+{% include "infohub/index.html" %}
+
+<title> Sign Up </title>
+
+{% block content %}
+<br>
+<br>
+<center>
+    <div class="content">
+        <div class ="row">
+            <h2>Sign Up</h2>
+            <br>
+            <form class="login form-horizontal" method="POST" action="">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="text-danger small">{{ field.errors }}</div>
+                        </div>
+                        <label class="control-label col-sm-5">{{ field.label_tag }}</label>
+                        <span class="col-sm-12">{{ field }}</span>
+                    </div>
+                {% endfor %}
+                <br>
+                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+                <br>
+                <button class="btn btn-primary" type="submit">Sign Up</button>
+                <br><br>
+                Already a User?
+                <a href="/accounts/login" style="font-style: oblique;">
+                    <u>Click here</u>
+                </a> to Log In!
+                <input type="hidden" name="fname" value="">
+                <input type="hidden" name="lname" value="">
+            </form>
+        </div>
+    </div>
+</center>
+<br>
+{% endblock %}

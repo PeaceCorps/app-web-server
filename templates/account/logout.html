@@ -1,0 +1,21 @@
+{% include "infohub/index.html" %}
+
+<title> Sign Out </title>
+    
+{% block content %}
+    <br><br><br>
+    <div class="content">
+    	<h1>
+            <b>LogOut</b>
+        </h1>
+    	<p>Are you sure you want to logout?</p>
+    	<form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+    	    <button class="btn btn-danger" type="submit"> Logout</button>
+    	</form>
+    </div>
+    <br><br><br>
+{% endblock %}

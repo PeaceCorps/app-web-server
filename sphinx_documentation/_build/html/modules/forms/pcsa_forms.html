@@ -1,0 +1,150 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PCSA Formss &#8212; MACC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pcsa-formss">
+<h1>PCSA Formss<a class="headerlink" href="#pcsa-formss" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-pcsa.forms"></span><dl class="class">
+<dt id="pcsa.forms.PostForm">
+<em class="property">class </em><code class="descclassname">pcsa.forms.</code><code class="descname">PostForm</code><span class="sig-paren">(</span><em>max_length=None</em>, <em>min_length=None</em>, <em>strip=True</em>, <em>empty_value=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa.forms.PostForm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="class">
+<dt id="pcsa.forms.PostForm.Meta">
+<em class="property">class </em><code class="descname">Meta</code><a class="headerlink" href="#pcsa.forms.PostForm.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="pcsa.forms.PostForm.Meta.fields">
+<code class="descname">fields</code><em class="property"> = ['title', 'description']</em><a class="headerlink" href="#pcsa.forms.PostForm.Meta.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa.forms.PostForm.Meta.model">
+<code class="descname">model</code><a class="headerlink" href="#pcsa.forms.PostForm.Meta.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">PcsaPost</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa.forms.PostForm.base_fields">
+<code class="descname">base_fields</code><em class="property"> = OrderedDict([('title', &lt;django.forms.fields.CharField object&gt;), ('description', &lt;django.forms.fields.CharField object&gt;), ('strip_field', &lt;pcsa.forms.StripTextField object&gt;)])</em><a class="headerlink" href="#pcsa.forms.PostForm.base_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa.forms.PostForm.declared_fields">
+<code class="descname">declared_fields</code><em class="property"> = OrderedDict([('strip_field', &lt;pcsa.forms.StripTextField object&gt;)])</em><a class="headerlink" href="#pcsa.forms.PostForm.declared_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcsa.forms.PostForm.media">
+<code class="descname">media</code><a class="headerlink" href="#pcsa.forms.PostForm.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa.forms.StripTextField">
+<em class="property">class </em><code class="descclassname">pcsa.forms.</code><code class="descname">StripTextField</code><span class="sig-paren">(</span><em>max_length=None</em>, <em>min_length=None</em>, <em>strip=True</em>, <em>empty_value=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa.forms.StripTextField" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pcsa.forms.StripTextField.clean">
+<code class="descname">clean</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#pcsa.forms.StripTextField.clean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcsa.forms.StripWhitespaceMixin">
+<em class="property">class </em><code class="descclassname">pcsa.forms.</code><code class="descname">StripWhitespaceMixin</code><a class="headerlink" href="#pcsa.forms.StripWhitespaceMixin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MACC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, yatna.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/modules/forms/pcsa_forms.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,190 @@
+img{
+	height: 100px;
+	width: 100px;
+	border-radius: 6px;
+	border: 1px solid #aaa;
+}
+
+.navbar-brand img{
+	width: 80px;
+    height: 75px;
+	border-width: 0;
+	margin-bottom: 0px;
+	margin-left: 5px;
+}
+
+.navbar .container, .footer{
+	background-color: #e8eaf6;
+}
+
+.navbar .container{
+	height: auto;
+	margin: 0px;
+	width: auto;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-bottom: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.navbar{
+	height: auto !important;
+}
+
+body{
+	font: 18px/24px arial, verdana;
+}
+
+.logo{
+	float: left;
+}
+
+.navbar-brand a {
+	color: #003c78;
+}
+
+nav .navbar-nav h4{
+	font-size: 15px;
+	color: #003c78;
+	text-shadow: none;
+	text-decoration: none;
+	margin: 0px;
+	font-weight: normal;
+}
+
+nav .logout h4{
+	color: white;
+}
+
+.navbar-default .navbar-nav li .logout:hover{
+	background-color: #993333 !important;
+}
+
+.navbar-nav li a {
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+
+.container h1{
+	font-size: 15px;
+	margin: 15px 0px;
+	padding-top: 15px;
+	padding-bottom: 20px;
+	color: #003c78;
+}
+
+.name:hover{
+	text-decoration: none !important;
+}
+
+.logout{
+	background-color: #993333;
+	border-radius: 0px !important;
+	border: none !important;
+}
+
+.nav a:hover{
+	box-shadow:none;
+}
+
+input:checked + label{
+	color: #009688;	
+}
+
+h1{
+	font-size: 30px;
+	padding-bottom: 30px;
+	margin-top: 0px;
+}
+
+a{
+	text-decoration: none;
+	color: #993333;
+}
+
+.box h3 a{
+	text-decoration: none;
+	color: #000;
+}
+
+.box h3 a:hover{
+	color: #993333;
+}
+
+a:hover{
+	cursor: pointer;
+	color: #993333;
+	text-decoration: none;
+}
+
+.footer{
+	clear: both;
+	padding-top: 10px;
+	text-align: center;
+}
+
+.footer a, .footer p{
+	font-size: 14px;
+	margin: 30px;
+	color: #993333;
+	font-weight: bold;
+}
+
+.container .navbar-brand{
+	padding: 0px;
+}
+
+@media only screen and (min-width: 950px){
+	
+	.navbar li{
+		display: inline-block;
+	}
+
+	img{
+		height: 150px;
+		width: 150px;
+		margin-bottom:  20px ;
+	}
+
+	.footer li{
+		display: inline-block;
+		margin-right:20px;
+	}
+}
+
+.ast{
+	color:red;
+	size:11;
+	padding:3;
+}
+
+.form-outline{
+    width:500px;
+    height:450px;
+    background-color:#e8eaf6;
+    margin-bottom: 100px;
+    margin-top: 50px;
+    padding: 5px;
+}
+
+.well {
+    border: 0px;
+    max-width: 65%;
+    margin: auto;
+    margin-bottom: 80px !important;
+	background: #e8eaf6 !important;
+}
+
+.table tbody tr td:last-child {
+    white-space: nowrap;
+    width: 1%
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+::-webkit-input-placeholder { 
+    color: #fff;
+}

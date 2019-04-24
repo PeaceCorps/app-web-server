@@ -1,14 +1,18 @@
+sudo: false
 language: python
 python:
-  - "2.6"
-  - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
-  - "nightly"
-
-# command to install dependencies
-install: "pip install -r requirements.txt"
-
-# command to run tests
-script: nosetests
+#  - "2.6"
+#  - "2.7"
+  - "3.6"
+install:
+  - "pip3 install -r requirements.txt"
+before_script:
+  - psql -c "create role myuser with createrole createdb login password 'mypassword';" -U postgres
+  - psql -c "create database webapp;" -U postgres
+  - export DJANGO_SETTINGS_MODULE="infohub.settings"
+script: 
+ - python3 manage.py makemigrations profiles
+ - python3 manage.py migrate --fake-initial
+ - python3 manage.py makemigrations infohub malaria_web pcsa pcsa_GHN pcsa_safety_tools
+ - python3 manage.py migrate --fake-initial
+# - python3 manage.py test --settings=infohub.settings
